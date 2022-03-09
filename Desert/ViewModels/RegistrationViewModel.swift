@@ -13,5 +13,17 @@ extension RegistrationView {
         @Published var email = ""
         @Published var firstPassword = ""
         @Published var secondPassword = ""
+        
+        @Published var showingAlert = false
+        
+        private let databaseManager = DatabaseManeger.databaseManager
+        
+        func registrationUser() {
+            databaseManager.addUser(nickname: nickname, email: email, password: firstPassword)
+        }
+        
+        func printAllUsers() {
+            databaseManager.printUsers()
+        }
     }
 }

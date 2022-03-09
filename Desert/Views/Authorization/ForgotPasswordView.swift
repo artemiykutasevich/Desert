@@ -43,13 +43,19 @@ struct ForgotPasswordView: View {
                     .keyboardType(.emailAddress)
                 
                 Button(action: {
-                    // MARK: add logic
+                    viewModel.resetPassword()
+                    viewModel.showingAlert = true
                 }, label: {
                     Text("Reset password")
                         .font(.body)
                         .fontWeight(.bold)
                         .buttonStyle()
                 })
+                .alert(isPresented: $viewModel.showingAlert) {
+                    Alert(title: Text("New password - your email"),
+                          message: Text("new password matches email"),
+                          dismissButton: .cancel(Text("Okey")))
+                }
             }
             .padding()
             .background(.ultraThinMaterial)

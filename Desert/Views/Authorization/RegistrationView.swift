@@ -14,11 +14,14 @@ struct RegistrationView: View {
         ZStack {
             BackgroundView()
             DesertView()
-            authorization
+            registration
+        }
+        .onAppear {
+            viewModel.printAllUsers()
         }
     }
     
-    var authorization: some View {
+    var registration: some View {
         VStack {
             Spacer()
             VStack(spacing: 20) {
@@ -32,7 +35,7 @@ struct RegistrationView: View {
                 
                 TextField("Nickname" .uppercased(), text: $viewModel.nickname)
                     .textFieldStyle()
-                    .keyboardType(.emailAddress)
+                    .keyboardType(.default)
                 
                 TextField("Email" .uppercased(), text: $viewModel.email)
                     .textFieldStyle()
@@ -40,20 +43,26 @@ struct RegistrationView: View {
                 
                 TextField("Password" .uppercased(), text: $viewModel.firstPassword)
                     .textFieldStyle()
-                    .keyboardType(.emailAddress)
+                    .keyboardType(.default)
                 
                 TextField("Confirm Password" .uppercased(), text: $viewModel.secondPassword)
                     .textFieldStyle()
-                    .keyboardType(.emailAddress)
+                    .keyboardType(.default)
                 
                 Button(action: {
-                    // MARK: add logic
+                    viewModel.registrationUser()
+                    viewModel.showingAlert = true
                 }, label: {
-                    Text("Registration")
+                    Text("Create account")
                         .font(.body)
                         .fontWeight(.bold)
                         .buttonStyle()
                 })
+                .alert(isPresented: $viewModel.showingAlert) {
+                    Alert(title: Text("My congratulations"),
+                          message: Text("the user is now registered"),
+                          dismissButton: .cancel(Text("Cool")))
+                }
             }
             .padding()
             .background(.ultraThinMaterial)

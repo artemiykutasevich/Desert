@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B85A32D227D8F2360076DA6A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B85A32D127D8F2360076DA6A /* Realm */; };
+		B85A32D427D8F2360076DA6A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B85A32D327D8F2360076DA6A /* RealmSwift */; };
+		B85A32D627D918720076DA6A /* FindFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85A32D527D918720076DA6A /* FindFriendsView.swift */; };
 		B85C9C1727D66AED0077B228 /* DesertApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85C9C1627D66AED0077B228 /* DesertApp.swift */; };
 		B85C9C1927D66AED0077B228 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85C9C1827D66AED0077B228 /* ContentView.swift */; };
 		B85C9C1B27D66AEF0077B228 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B85C9C1A27D66AEF0077B228 /* Assets.xcassets */; };
@@ -24,11 +27,8 @@
 		B899AB6B27D6897800B81A29 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899AB6A27D6897800B81A29 /* AuthorizationView.swift */; };
 		B899AB6D27D689A300B81A29 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899AB6C27D689A300B81A29 /* RegistrationView.swift */; };
 		B899AB6F27D689BA00B81A29 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899AB6E27D689BA00B81A29 /* ForgotPasswordView.swift */; };
-		B899AB7127D68A0500B81A29 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899AB7027D68A0500B81A29 /* Server.swift */; };
 		B899AB7327D68A2000B81A29 /* DatabaseUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899AB7227D68A2000B81A29 /* DatabaseUsers.swift */; };
 		B899AB7627D68A5000B81A29 /* DatabasePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899AB7527D68A5000B81A29 /* DatabasePosts.swift */; };
-		B899AB7827D68AAB00B81A29 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899AB7727D68AAB00B81A29 /* User.swift */; };
-		B899AB7A27D68AB600B81A29 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899AB7927D68AB600B81A29 /* Post.swift */; };
 		B899AB8A27D6942D00B81A29 /* AuthorizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899AB8927D6942D00B81A29 /* AuthorizationViewModel.swift */; };
 		B899AB8C27D695B000B81A29 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899AB8B27D695B000B81A29 /* BackgroundView.swift */; };
 		B899AB8E27D69BB500B81A29 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899AB8D27D69BB500B81A29 /* RegistrationViewModel.swift */; };
@@ -63,6 +63,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B85A32D527D918720076DA6A /* FindFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFriendsView.swift; sourceTree = "<group>"; };
 		B85C9C1327D66AED0077B228 /* Desert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Desert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B85C9C1627D66AED0077B228 /* DesertApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesertApp.swift; sourceTree = "<group>"; };
 		B85C9C1827D66AED0077B228 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,11 +84,8 @@
 		B899AB6A27D6897800B81A29 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		B899AB6C27D689A300B81A29 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		B899AB6E27D689BA00B81A29 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
-		B899AB7027D68A0500B81A29 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		B899AB7227D68A2000B81A29 /* DatabaseUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseUsers.swift; sourceTree = "<group>"; };
 		B899AB7527D68A5000B81A29 /* DatabasePosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabasePosts.swift; sourceTree = "<group>"; };
-		B899AB7727D68AAB00B81A29 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		B899AB7927D68AB600B81A29 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		B899AB8927D6942D00B81A29 /* AuthorizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewModel.swift; sourceTree = "<group>"; };
 		B899AB8B27D695B000B81A29 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		B899AB8D27D69BB500B81A29 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
@@ -109,6 +107,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B85A32D427D8F2360076DA6A /* RealmSwift in Frameworks */,
+				B85A32D227D8F2360076DA6A /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				B85C9C1627D66AED0077B228 /* DesertApp.swift */,
-				B85C9C4727D67E230077B228 /* Server */,
+				B899AB5A27D6829900B81A29 /* Database */,
 				B85C9C4027D67AC30077B228 /* Navigation */,
 				B85C9C4127D67AD30077B228 /* Views */,
 				B85C9C4227D67B050077B228 /* Components */,
@@ -226,8 +226,6 @@
 		B85C9C4327D67B560077B228 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B899AB7727D68AAB00B81A29 /* User.swift */,
-				B899AB7927D68AB600B81A29 /* Post.swift */,
 				B899ABB527D73DB200B81A29 /* Tab.swift */,
 				B899ABB827D73DFA00B81A29 /* PreferenceKey.swift */,
 			);
@@ -241,15 +239,6 @@
 				B899AB9527D7135900B81A29 /* ButtonModifier.swift */,
 			);
 			path = Styles;
-			sourceTree = "<group>";
-		};
-		B85C9C4727D67E230077B228 /* Server */ = {
-			isa = PBXGroup;
-			children = (
-				B899AB7027D68A0500B81A29 /* Server.swift */,
-				B899AB5A27D6829900B81A29 /* DatabaseManager */,
-			);
-			path = Server;
 			sourceTree = "<group>";
 		};
 		B899AB5827D6825D00B81A29 /* Authorization */ = {
@@ -272,20 +261,21 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		B899AB5A27D6829900B81A29 /* DatabaseManager */ = {
+		B899AB5A27D6829900B81A29 /* Database */ = {
 			isa = PBXGroup;
 			children = (
 				B899AB5C27D687EA00B81A29 /* DatabaseManager.swift */,
 				B899AB7227D68A2000B81A29 /* DatabaseUsers.swift */,
 				B899AB7527D68A5000B81A29 /* DatabasePosts.swift */,
 			);
-			path = DatabaseManager;
+			path = Database;
 			sourceTree = "<group>";
 		};
 		B899AB5B27D6834500B81A29 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
 				B899AB6827D6894F00B81A29 /* NewPublication.swift */,
+				B89F1E7327D75568003CAE99 /* FriendsView.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -303,9 +293,9 @@
 		B89F1E7227D75552003CAE99 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				B89F1E7327D75568003CAE99 /* FriendsView.swift */,
 				B89F1E7527D755CA003CAE99 /* SettingsView.swift */,
 				B89F1E7727D75CE9003CAE99 /* PlacesView.swift */,
+				B85A32D527D918720076DA6A /* FindFriendsView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -326,6 +316,10 @@
 			dependencies = (
 			);
 			name = Desert;
+			packageProductDependencies = (
+				B85A32D127D8F2360076DA6A /* Realm */,
+				B85A32D327D8F2360076DA6A /* RealmSwift */,
+			);
 			productName = Desert;
 			productReference = B85C9C1327D66AED0077B228 /* Desert.app */;
 			productType = "com.apple.product-type.application";
@@ -398,6 +392,9 @@
 				Base,
 			);
 			mainGroup = B85C9C0A27D66AED0077B228;
+			packageReferences = (
+				B85A32D027D8F2360076DA6A /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = B85C9C1427D66AED0077B228 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -448,12 +445,11 @@
 				B899AB6127D688BE00B81A29 /* NavigationBar.swift in Sources */,
 				B899AB8E27D69BB500B81A29 /* RegistrationViewModel.swift in Sources */,
 				B899ABB627D73DB200B81A29 /* Tab.swift in Sources */,
-				B899AB7A27D68AB600B81A29 /* Post.swift in Sources */,
 				B899ABB427D73BDA00B81A29 /* PostView.swift in Sources */,
-				B899AB7827D68AAB00B81A29 /* User.swift in Sources */,
 				B89F1E7427D75568003CAE99 /* FriendsView.swift in Sources */,
 				B85C9C1927D66AED0077B228 /* ContentView.swift in Sources */,
 				B899AB7327D68A2000B81A29 /* DatabaseUsers.swift in Sources */,
+				B85A32D627D918720076DA6A /* FindFriendsView.swift in Sources */,
 				B85C9C1727D66AED0077B228 /* DesertApp.swift in Sources */,
 				B89F1E7627D755CA003CAE99 /* SettingsView.swift in Sources */,
 				B899AB6727D6891E00B81A29 /* AccountView.swift in Sources */,
@@ -464,7 +460,6 @@
 				B89F1E7827D75CE9003CAE99 /* PlacesView.swift in Sources */,
 				B899AB6B27D6897800B81A29 /* AuthorizationView.swift in Sources */,
 				B899AB6F27D689BA00B81A29 /* ForgotPasswordView.swift in Sources */,
-				B899AB7127D68A0500B81A29 /* Server.swift in Sources */,
 				B899AB5F27D688AB00B81A29 /* TabBar.swift in Sources */,
 				B899AB8C27D695B000B81A29 /* BackgroundView.swift in Sources */,
 				B899AB9827D7162C00B81A29 /* DesertView.swift in Sources */,
@@ -637,6 +632,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -666,6 +662,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -797,6 +794,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B85A32D027D8F2360076DA6A /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B85A32D127D8F2360076DA6A /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B85A32D027D8F2360076DA6A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		B85A32D327D8F2360076DA6A /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B85A32D027D8F2360076DA6A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B85C9C0B27D66AED0077B228 /* Project object */;
 }

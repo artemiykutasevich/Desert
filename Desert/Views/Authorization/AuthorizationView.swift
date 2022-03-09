@@ -41,13 +41,18 @@ struct AuthorizationView: View {
                     .keyboardType(.default)
                 
                 Button(action: {
-                    // MARK: add logic
+                    viewModel.buttonAction()
                 }, label: {
                     Text("Sign in")
                         .font(.body)
                         .fontWeight(.bold)
                         .buttonStyle()
                 })
+                .alert(isPresented: $viewModel.showingAlert) {
+                    Alert(title: Text("User not found"),
+                          message: Text("Chech your email and password"),
+                          dismissButton: .cancel(Text("Okey")))
+                }
                 
                 NavigationLink(destination: ForgotPasswordView()) {
                     Text("Forgot password?")

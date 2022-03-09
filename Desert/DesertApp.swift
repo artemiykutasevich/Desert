@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct DesertApp: App {
+    
+    @AppStorage("ActiveUserEmail") var activeUserEmail = ""
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if activeUserEmail == "" {
+                AuthorizationView()
+            } else {
+                ContentView()
+            }
         }
     }
 }
