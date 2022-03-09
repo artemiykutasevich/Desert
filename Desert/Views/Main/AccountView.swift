@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AccountView: View {
+    @AppStorage("ActiveUserEmail") var activeUserEmail = ""
     
     @State var showingSheet = false
     
@@ -48,14 +49,6 @@ struct AccountView: View {
                         }
                     }
                 
-//                NavigationLink(destination: FriendsView()) {
-//                    HStack {
-//                        friends
-//                        Spacer()
-//                        Text("My Friends")
-//                    }
-//                }
-                
                 Button(action: {
                     showingSheet.toggle()
                 }, label: {
@@ -69,10 +62,16 @@ struct AccountView: View {
                     FriendsView()
                 }
                 
-                
+//                // Version 1.1
+//                Section {
+//                    NavigationLink(destination: PlacesView()) {
+//                        Text("My places")
+//                    }
+//                }
+                 
                 Section {
-                    NavigationLink(destination: PlacesView()) {
-                        Text("My places")
+                    NavigationLink(destination: FindFriendsView()) {
+                        Label("Find Friends", systemImage: "person")
                     }
                 }
                 
@@ -83,11 +82,16 @@ struct AccountView: View {
                 }
                 
                 Section {
-                    Label("Exit", systemImage: "xmark.app")
+                    Button(action: {
+                        activeUserEmail = ""
+                    }, label: {
+                        Label("Exit", systemImage: "xmark.app")
+                    })
                 }
                 .listRowBackground(Color(.red).opacity(0.3))
             }
             .foregroundColor(.primary)
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
             .safeAreaInset(edge: .top, content: {
                 Color.clear.frame(height: 70)

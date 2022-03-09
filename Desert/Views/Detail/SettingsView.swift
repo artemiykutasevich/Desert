@@ -58,6 +58,8 @@ struct SettingsView: View {
                 .listRowSeparatorTint(.black)
                 .foregroundColor(.black)
             }
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }
