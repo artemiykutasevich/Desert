@@ -9,6 +9,7 @@ import Foundation
 import RealmSwift
 
 class DatabaseUsers: Object, Identifiable {
+    @Persisted var id = UUID()
     @Persisted var nickname: String
     @Persisted var email: String
     @Persisted var password: String

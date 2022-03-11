@@ -9,6 +9,7 @@ import Foundation
 import RealmSwift
 
 class DatabasePosts: Object, Identifiable {
+    @Persisted var id = UUID()
     @Persisted var userEmail: String
     
     @Persisted var publishedAt = Date()
