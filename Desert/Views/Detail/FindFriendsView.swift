@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct FindFriendsView: View {
-    
-    @State var text = ""
+    @StateObject private var viewModel = FindFriendsViewModel()
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color("Color 1"))
@@ -18,11 +17,28 @@ struct FindFriendsView: View {
     var body: some View {
         NavigationView {
             List {
-                TextField("find friends", text: $text)
-                
-                Section {
-                    Text("fjfj")
-                    Text("fjfjf")
+                ForEach(viewModel.recomends) { user in
+                    HStack {
+                        Image("photo")
+                            .resizable()
+                            .imageCircleStyle()
+                            .imageCircleStrokeStyle()
+                        Spacer()
+                        HStack {
+                            Text(user.nickname)
+                                .fontWeight(.bold)
+                            Text("\(user.friends.count) friends")
+                                .fontWeight(.light)
+                        }
+                        Spacer()
+                        Button(action: {
+                            viewModel.addFriends(friendEmail: user.email)
+                            viewModel.updateRecommends()
+                        }, label: {
+                            Text("Add to friends")
+                        })
+                        .buttonStyle(width: 100)
+                    }
                 }
             }
             .navigationTitle("Find Friends")

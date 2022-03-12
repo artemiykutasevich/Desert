@@ -5,10 +5,13 @@
 //  Created by Artem Kutasevich on 7.03.22.
 //
 
-import Foundation
+import SwiftUI
 import RealmSwift
 
-class DatabaseManeger {    
+class DatabaseManeger {
+    @ObservedResults(DatabaseUsers.self) var users
+    @ObservedResults(DatabasePosts.self) var posts
+    
     static let databaseManager = DatabaseManeger()
     
     private init() { /* Singleton */ }
@@ -16,11 +19,21 @@ class DatabaseManeger {
     private let realm = try! Realm()
     
     func findUser(by email: String) -> DatabaseUsers {
-        let users = realm.objects(DatabaseUsers.self)
         var realmUser = DatabaseUsers()
         
         for user in users {
             if user.email == email {
+                realmUser = user
+            }
+        }
+        return realmUser
+    }
+    
+    func findUser(by id: UUID) -> DatabaseUsers {
+        var realmUser = DatabaseUsers()
+        
+        for user in users {
+            if user.id == id {
                 realmUser = user
             }
         }
@@ -55,9 +68,8 @@ class DatabaseManeger {
     }
     
     // MARK: Authorization View
-   
+    
     func authorization(email: String, password: String) -> Bool {
-        let users = realm.objects(DatabaseUsers.self)
         var answer = false
         
         for user in users {
@@ -79,7 +91,6 @@ class DatabaseManeger {
     }
     
     func isUserCreated(user email: String) -> Bool {
-        let users = realm.objects(DatabaseUsers.self)
         var answer = false
         
         for user in users {
@@ -88,5 +99,75 @@ class DatabaseManeger {
             }
         }
         return answer
+    }
+    
+    // MARK: FindFriends View
+    
+    func addFriend(userEmail: String, friendEmail: String) {
+        let user = findUser(by: userEmail)
+        let friend = findUser(by: friendEmail)
+        
+        try? realm.write {
+            user.friends.append(friend.id)
+            friend.friends.append(user.id)
+        }
+    }
+    
+    func makeFriend(reference: DatabaseUsers) -> DatabaseFriend {
+        let friend = DatabaseFriend(id: reference.id,
+                                    nickname: reference.nickname,
+                                    email: reference.email,
+                                    avatar: reference.avatar,
+                                    latitude: reference.latitude,
+                                    longitude: reference.longitude,
+                                    friends: reference.friends,
+                                    posts: reference.posts)
+        return friend
+    }
+    
+    func findFriends(email: String) -> [DatabaseFriend] {
+        let user = findUser(by: email)
+        var array = [DatabaseFriend]()
+        
+        for friend in user.friends {
+            array.append(makeFriend(reference: findUser(by: friend)))
+        }
+        return array
+    }
+    
+    func makeRecommends(userEmail: String) -> [DatabaseFriend] {
+        let userMain = makeFriend(reference: findUser(by: userEmail))
+        
+        var arrayOfUsers = [DatabaseFriend]()
+        for user in users {
+            arrayOfUsers.append(makeFriend(reference: user))
+        }
+        
+        let listOfUUIDFriends = userMain.friends
+        
+        var arrayOfFriends = [DatabaseFriend]()
+        for friend in listOfUUIDFriends {
+            arrayOfFriends.append(makeFriend(reference: findUser(by: friend)))
+        }
+        
+        var index = 0
+        for user in arrayOfUsers {
+            if user.email == userMain.email {
+                arrayOfUsers.remove(at: index)
+            }
+            index += 1
+        }
+        
+        index = 0
+        for friend in arrayOfFriends {
+            for user in arrayOfUsers {
+                if user.email == friend.email {
+                    arrayOfUsers.remove(at: index)
+                }
+                index += 1
+            }
+            index = 0
+        }
+        return arrayOfUsers
     }
 }

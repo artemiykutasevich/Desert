@@ -19,6 +19,6 @@ class DatabaseUsers: Object, Identifiable {
     @Persisted var latitude = 0.0
     @Persisted var longitude = 0.0
     
-    @Persisted var friends = List<DatabaseUsers>()
+    @Persisted var friends = List<UUID>()
     @Persisted var posts = List<DatabasePosts>()
 }

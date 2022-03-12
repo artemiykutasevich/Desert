@@ -8,70 +8,84 @@
 import SwiftUI
 
 struct AccountView: View {
-    @AppStorage("ActiveUserEmail") var activeUserEmail = ""
-    
-    @State var showingSheet = false
+    @StateObject private var viewModel = AccountViewModel()
     
     init() {
-        UITableView.appearance().backgroundColor = UIColor(Color("Color 1"))
+        UITableView.appearance().backgroundColor = UIColor(Color("Color 4"))
     }
+    
+    // MARK: body
     
     var body: some View {
         NavigationView {
             List {
-                profile
-                    .contextMenu {
-                        VStack {
-                            Button(action: {
-                                print("person")
-                            }, label: {
-                                HStack {
-                                    Text("Change avatar")
-                                    Image(systemName: "person")
-                                }
-                            })
-                            Button(action: {
-                                print("nickname")
-                            }, label: {
-                                HStack {
-                                    Text("Change nickname")
-                                    Image(systemName: "textformat.abc")
-                                }
-                            })
-                            Button(action: {
-                                print("password")
-                            }, label: {
-                                HStack {
-                                    Text("Change password")
-                                    Image(systemName: "textformat.123")
-                                }
-                            })
+                Section {
+                    profile
+                        .contextMenu {
+                            VStack {
+                                Button(action: {
+                                    // MARK: ADD logic of changing avatar
+                                    print("person")
+                                }, label: {
+                                    HStack {
+                                        Text("Change avatar")
+                                        Image(systemName: "person")
+                                    }
+                                })
+                                Button(action: {
+                                    // MARK: ADD logic of changing nickname
+                                    print("nickname")
+                                }, label: {
+                                    HStack {
+                                        Text("Change nickname")
+                                        Image(systemName: "textformat.abc")
+                                    }
+                                })
+                                Button(action: {
+                                    // MARK: ADD logic of changing password
+                                    print("password")
+                                }, label: {
+                                    HStack {
+                                        Text("Change password")
+                                        Image(systemName: "textformat.123")
+                                    }
+                                })
+                            }
                         }
+                    
+                    Button(action: {
+                        viewModel.showingPostsSheeet.toggle()
+                        viewModel.printActiveUser()
+                    }, label: {
+                        HStack {
+                            posts
+                            Spacer()
+                            Text("My Posts")
+                            Spacer()
+                        }
+                    })
+                    .sheet(isPresented: $viewModel.showingPostsSheeet) {
+                        PostsView()
                     }
-                
-                Button(action: {
-                    showingSheet.toggle()
-                }, label: {
-                    HStack {
-                        friends
-                        Spacer()
-                        Text("My Friends")
+                    
+                    Button(action: {
+                        viewModel.showingFriendsSheet.toggle()
+                    }, label: {
+                        HStack {
+                            friends
+                            Spacer()
+                            Text("My Friends")
+                            Spacer()
+                        }
+                    })
+                    .sheet(isPresented: $viewModel.showingFriendsSheet) {
+                        FriendsView()
                     }
-                })
-                .sheet(isPresented: $showingSheet) {
-                    FriendsView()
                 }
                 
-//                // Version 1.1
-//                Section {
-//                    NavigationLink(destination: PlacesView()) {
-//                        Text("My places")
-//                    }
-//                }
-                 
                 Section {
                     NavigationLink(destination: FindFriendsView()) {
-                        Label("Find Friends", systemImage: "person")
+                        Label("Find Friend", systemImage: "person")
                     }
                 }
                 
@@ -83,7 +97,7 @@ struct AccountView: View {
                 
                 Section {
                     Button(action: {
-                        activeUserEmail = ""
+                        viewModel.activeUserEmail = ""
                     }, label: {
                         Label("Exit", systemImage: "xmark.app")
                     })
@@ -96,19 +110,18 @@ struct AccountView: View {
             .safeAreaInset(edge: .top, content: {
                 Color.clear.frame(height: 70)
             })
-            .safeAreaInset(edge: .bottom, content: {
-                Color.clear.frame(height: 70)
-            })
             .overlay(NavigationBar(title: "Account"))
         }
     }
+    
+    // MARK: profile
     
     var profile: some View {
         VStack(spacing: 8) {
             Image(systemName: "person.crop.circle.fill.badge.checkmark")
                 .font(.largeTitle)
                 .symbolRenderingMode(.palette)
-                .foregroundStyle(.green, Color("Color 1"))
+                .foregroundStyle(.green, Color("Color 4"))
                 .padding()
                 .background(Circle().fill(.ultraThinMaterial))
                 .background(
@@ -121,12 +134,13 @@ struct AccountView: View {
                         .offset(x: -270, y: 60)
                         .scaleEffect(0.7)
                 )
-            Text("Nickname")
+            Text(viewModel.getNickname())
                 .font(.title)
                 .fontWeight(.semibold)
+                .foregroundColor(.primary)
             HStack {
                 Image(systemName: "location")
-                Text("Belarus")
+                Text(viewModel.getLocation())
             }
             .foregroundColor(.secondary)
         }
@@ -134,33 +148,55 @@ struct AccountView: View {
         .padding()
     }
     
+    // MARK: friends
+    
     var friends: some View {
         ZStack {
             Image("photo")
-                .font(.largeTitle)
-                .clipShape(Circle())
-                .scaleEffect(0.3)
-                .frame(width: 30, height: 30)
-                .padding()
-                .background(Circle().fill(.ultraThinMaterial))
+                .resizable()
+                .imageCircleStyle()
+                .imageCircleStrokeStyle(strokeSize: 3)
+                .scaleEffect(0.8)
             
             Image("photo")
-                .font(.largeTitle)
-                .clipShape(Circle())
-                .scaleEffect(0.3)
-                .frame(width: 30, height: 30)
-                .padding()
-                .background(Circle().fill(.ultraThinMaterial))
-                .offset(x: 30)
+                .resizable()
+                .imageCircleStyle()
+                .imageCircleStrokeStyle(strokeSize: 3)
+                .scaleEffect(0.8)
+                .offset(x: 50)
             
             Image("photo")
-                .font(.largeTitle)
-                .clipShape(Circle())
-                .scaleEffect(0.3)
-                .frame(width: 30, height: 30)
-                .padding()
-                .background(Circle().fill(.ultraThinMaterial))
-                .offset(x: 60)
+                .resizable()
+                .imageCircleStyle()
+                .imageCircleStrokeStyle(strokeSize: 3)
+                .scaleEffect(0.9)
+                .offset(x: 25)
+        }
+    }
+    
+    // MARK: posts
+    
+    var posts: some View {
+        ZStack {
+            Image("photo")
+                .resizable()
+                .imageRoundedRectangleStyle()
+                .imageRoundedRectangleStrokeStyle(strokeSize: 3)
+                .scaleEffect(0.8)
+            
+            Image("photo")
+                .resizable()
+                .imageRoundedRectangleStyle()
+                .imageRoundedRectangleStrokeStyle(strokeSize: 3)
+                .scaleEffect(0.8)
+                .offset(x: 50)
+            
+            Image("photo")
+                .resizable()
+                .imageRoundedRectangleStyle()
+                .imageRoundedRectangleStrokeStyle(strokeSize: 3)
+                .scaleEffect(0.9)
+                .offset(x: 25)
         }
     }
 }
@@ -169,6 +205,8 @@ struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             AccountView()
+            AccountView()
+                .preferredColorScheme(.dark)
         }
     }
 }

@@ -8,8 +8,34 @@
 import SwiftUI
 
 struct FriendsView: View {
+    @StateObject var viewModel = FriendsViewModel()
+    
+    init() {
+        UITableView.appearance().backgroundColor = UIColor(Color("Color 1"))
+    }
+    
     var body: some View {
-        Text("My Friends")
+        NavigationView {
+            List {
+                ForEach(viewModel.friends ?? []) { friend in
+                    HStack {
+                        Image("photo")
+                            .resizable()
+                            .imageCircleStyle()
+                            .imageCircleStrokeStyle()
+                        Spacer()
+                        VStack {
+                            Text(friend.nickname)
+                                .fontWeight(.bold)
+                            Text("\(friend.friends.count) friend")
+                                .fontWeight(.light)
+                        }
+                        Spacer()
+                    }
+                }
+            }
+            .navigationTitle("My Friends")
+        }
     }
 }
 
