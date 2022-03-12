@@ -5,7 +5,7 @@
 //  Created by Artem Kutasevich on 7.03.22.
 //
 
-import Foundation
+import SwiftUI
 
 extension ForgotPasswordView {
     @MainActor class ForgotPasswordViewModel: ObservableObject {
@@ -17,6 +17,7 @@ extension ForgotPasswordView {
         
         func resetPassword() {
             databaseManager.resetPassword(for: email)
+            email = ""
         }
     }
 }

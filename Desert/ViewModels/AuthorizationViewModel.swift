@@ -9,7 +9,6 @@ import SwiftUI
 
 extension AuthorizationView {
     @MainActor class AuthorizationViewModel: ObservableObject {
-        
         @AppStorage("ActiveUserEmail") var activeUserEmail = ""
         
         @Published var email = ""
@@ -29,7 +28,7 @@ extension AuthorizationView {
         
         func buttonAction() {
             if authorization() == true {
-                email = email
+                activeUserEmail = email
             } else {
                 showingAlert = true
             }
