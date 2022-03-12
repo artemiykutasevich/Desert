@@ -24,7 +24,7 @@ struct FindFriendsView: View {
                             .imageCircleStyle()
                             .imageCircleStrokeStyle()
                         Spacer()
-                        HStack {
+                        VStack {
                             Text(user.nickname)
                                 .fontWeight(.bold)
                             Text("\(user.friends.count) friends")
