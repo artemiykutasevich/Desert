@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct ButtonModifier: ViewModifier {
+    var width: CGFloat
+    
     func body(content: Content) -> some View {
         content
-            .frame(width: 300.0, height: 44.0)
+            .frame(width: width, height: 44.0)
             .foregroundColor(Color(.white))
             .background(Color("Color 3"))
             .cornerRadius(16)
@@ -19,7 +21,7 @@ struct ButtonModifier: ViewModifier {
 }
 
 extension View {
-    func buttonStyle() -> some View {
-        self.modifier(ButtonModifier())
+    func buttonStyle(width: CGFloat = 300) -> some View {
+        self.modifier(ButtonModifier(width: width))
     }
 }
