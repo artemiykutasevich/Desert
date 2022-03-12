@@ -9,9 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @State private var location = true
-    
-    @State private var animation = true
-    @State private var glassEffect = true
+    @AppStorage("Animation") var animation = true
 
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color("Color 1"))
@@ -27,21 +25,16 @@ struct SettingsView: View {
                     }
                 }
                 .listRowBackground(Color("Color 4"))
-                .foregroundColor(.black)
+                .foregroundColor(.primary)
                 
                 Section("Customization") {
                     HStack {
                         Label("Animations", systemImage: animation ? "play" : "pause")
                         Toggle("", isOn: $animation)
                     }
-                    HStack {
-                        Label("Glass Effect", systemImage: glassEffect ? "play" : "pause")
-                        Toggle("", isOn: $glassEffect)
-                    }
                 }
                 .listRowBackground(Color("Color 4"))
-                .listRowSeparatorTint(.black)
-                .foregroundColor(.black)
+                .foregroundColor(.primary)
                 
                 Section("About author") {
                     Link(destination: URL(string: "https://github.com/artemiykutasevich")!) {
@@ -55,8 +48,7 @@ struct SettingsView: View {
                     }
                 }
                 .listRowBackground(Color("Color 4"))
-                .listRowSeparatorTint(.black)
-                .foregroundColor(.black)
+                .foregroundColor(.primary)
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.large)

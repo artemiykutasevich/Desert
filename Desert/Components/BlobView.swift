@@ -8,18 +8,37 @@
 import SwiftUI
 
 struct BlobView: View {
+    @AppStorage("Animation") var animation = true
     @State var appear = false
     
     var body: some View {
-        TimelineView(.animation) { timeline in
-            let now = timeline.date.timeIntervalSinceReferenceDate
-            let angle = Angle.degrees(now.remainder(dividingBy: 3) * 30)
-            let x = cos(angle.radians)
-            let angle2 = Angle.degrees(now.remainder(dividingBy: 5) * 20)
-            let y = cos(angle2.radians)
-            
+        if animation {
+            TimelineView(.animation) { timeline in
+                let now = timeline.date.timeIntervalSinceReferenceDate
+                let angle = Angle.degrees(now.remainder(dividingBy: 3) * 30)
+                let x = cos(angle.radians)
+                let angle2 = Angle.degrees(now.remainder(dividingBy: 5) * 20)
+                let y = cos(angle2.radians)
+                
+                Canvas { context, size in
+                    context.fill(path(in: CGRect(x: 0, y: 0, width: size.width, height: size.height), x: x, y: y),
+                                 with: .linearGradient(Gradient(
+                                    colors: [Color("Color 4"), Color("Color 2")]),
+                                    startPoint: CGPoint(x: 0, y: 0),
+                                    endPoint: CGPoint(x: 330, y: 330))
+                    )
+                }
+                .frame(width: 330, height: 210)
+                .rotationEffect(.degrees(appear ? 360 : 0))
+            }
+            .onAppear {
+                withAnimation(.linear(duration: 20).repeatForever(autoreverses: true)) {
+                    appear = true
+                }
+            }
+        } else {
             Canvas { context, size in
-                context.fill(path(in: CGRect(x: 0, y: 0, width: size.width, height: size.height), x: x, y: y),
+                context.fill(path(in: CGRect(x: 0, y: 0, width: size.width, height: size.height), x: 1, y: 1),
                              with: .linearGradient(Gradient(
                                 colors: [Color("Color 4"), Color("Color 2")]),
                                 startPoint: CGPoint(x: 0, y: 0),
@@ -27,12 +46,6 @@ struct BlobView: View {
                 )
             }
             .frame(width: 330, height: 210)
-            .rotationEffect(.degrees(appear ? 360 : 0))
-        }
-        .onAppear {
-            withAnimation(.linear(duration: 20).repeatForever(autoreverses: true)) {
-                appear = true
-            }
         }
     }
     
@@ -59,18 +72,37 @@ struct BlobView: View {
 }
 
 struct BlobView2: View {
+    @AppStorage("Animation") var animation = true
     @State var appear = false
     
     var body: some View {
-        TimelineView(.animation) { timeline in
-            let now = timeline.date.timeIntervalSinceReferenceDate
-            let angle = Angle.degrees(now.remainder(dividingBy: 4) * 20)
-            let x = cos(angle.radians)
-            let angle2 = Angle.degrees(now.remainder(dividingBy: 6) * 20)
-            let y = cos(angle2.radians)
-            
+        if animation {
+            TimelineView(.animation) { timeline in
+                let now = timeline.date.timeIntervalSinceReferenceDate
+                let angle = Angle.degrees(now.remainder(dividingBy: 4) * 20)
+                let x = cos(angle.radians)
+                let angle2 = Angle.degrees(now.remainder(dividingBy: 6) * 20)
+                let y = cos(angle2.radians)
+                
+                Canvas { context, size in
+                    context.fill(path(in: CGRect(x: 0, y: 0, width: size.width, height: size.height), x: x, y: y),
+                                 with: .linearGradient(Gradient(
+                                    colors: [Color("Color 4"), Color("Color 2")]),
+                                    startPoint: CGPoint(x: 0, y: 0),
+                                    endPoint: CGPoint(x: 330, y: 330))
+                    )
+                }
+                .frame(width: 330, height: 210)
+                .rotationEffect(.degrees(appear ? 0 : 360))
+            }
+            .onAppear {
+                withAnimation(.linear(duration: 12).repeatForever(autoreverses: true)) {
+                    appear = true
+                }
+            }
+        } else {
             Canvas { context, size in
-                context.fill(path(in: CGRect(x: 0, y: 0, width: size.width, height: size.height), x: x, y: y),
+                context.fill(path(in: CGRect(x: 0, y: 0, width: size.width, height: size.height), x: 1, y: 1),
                              with: .linearGradient(Gradient(
                                 colors: [Color("Color 4"), Color("Color 2")]),
                                 startPoint: CGPoint(x: 0, y: 0),
@@ -78,12 +110,6 @@ struct BlobView2: View {
                 )
             }
             .frame(width: 330, height: 210)
-            .rotationEffect(.degrees(appear ? 0 : 360))
-        }
-        .onAppear {
-            withAnimation(.linear(duration: 12).repeatForever(autoreverses: true)) {
-                appear = true
-            }
         }
     }
     
