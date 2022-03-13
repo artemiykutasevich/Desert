@@ -16,11 +16,7 @@ extension AuthorizationView {
         
         @Published var showingAlert = false
         
-        private let databaseManager = DatabaseManeger.databaseManager
-        
-        func printAllUsers() {
-            databaseManager.printUsers()
-        }
+        private let databaseManager = DatabaseManager.databaseManager
         
         func authorization() -> Bool {
             return databaseManager.authorization(email: email, password: password)

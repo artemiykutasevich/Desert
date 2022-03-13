@@ -10,7 +10,7 @@ import SwiftUI
 extension FriendsView {
     @MainActor class FriendsViewModel: ObservableObject {
         @AppStorage("ActiveUserEmail") var activeUserEmail = ""
-        let databaseManeger = DatabaseManeger.databaseManager
+        private let databaseManeger = DatabaseManager.databaseManager
         
         @Published var friends: [DatabaseFriend]?
         

@@ -13,7 +13,7 @@ extension ForgotPasswordView {
         
         @Published var showingAlert = false
         
-        private let databaseManager = DatabaseManeger.databaseManager
+        private let databaseManager = DatabaseManager.databaseManager
         
         func resetPassword() {
             databaseManager.resetPassword(for: email)

@@ -11,7 +11,7 @@ extension AccountView {
     @MainActor class AccountViewModel: ObservableObject {
         @AppStorage("ActiveUserEmail") var activeUserEmail = ""
         
-        private let databaseManager = DatabaseManeger.databaseManager
+        private let databaseManager = DatabaseManager.databaseManager
         @Published var activeUser: DatabaseUsers?
         
         @Published var showingPostsSheeet = false

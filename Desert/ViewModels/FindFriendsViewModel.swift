@@ -12,7 +12,7 @@ extension FindFriendsView {
     @MainActor class FindFriendsViewModel: ObservableObject {
         @AppStorage("ActiveUserEmail") var activeUserEmail = ""
         
-        private let databaseManeger = DatabaseManeger.databaseManager
+        private let databaseManeger = DatabaseManager.databaseManager
         @Published var recomends = [DatabaseFriend]()
         
         init() {
