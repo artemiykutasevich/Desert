@@ -39,7 +39,7 @@ struct NavigationBar: View {
                             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
                     })
                     .sheet(isPresented: $showingSheet) {
-                        NewPublication()
+                        PublicationView()
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
