@@ -16,7 +16,7 @@ extension RegistrationView {
         
         @Published var showingAlert = false
         
-        private let databaseManager = DatabaseManeger.databaseManager
+        private let databaseManager = DatabaseManager.databaseManager
         
         func registrationUser() {
             databaseManager.addUser(nickname: nickname, email: email, password: firstPassword)
@@ -24,10 +24,6 @@ extension RegistrationView {
             email = ""
             firstPassword = ""
             secondPassword = ""
-        }
-        
-        func printAllUsers() {
-            databaseManager.printUsers()
         }
     }
 }

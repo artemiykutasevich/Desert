@@ -16,9 +16,6 @@ struct RegistrationView: View {
             DesertView()
             registration
         }
-        .onAppear {
-            viewModel.printAllUsers()
-        }
     }
     
     var registration: some View {
