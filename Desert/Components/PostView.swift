@@ -8,60 +8,62 @@
 import SwiftUI
 
 struct PostView: View {
+    @AppStorage("ActiveUserEmail") var activeUserEmail = ""
+    var post: DatabasePosts
+    
+    private let databaseManager = DatabaseManager.databaseManager
+    private let fileManager = FileManager()
+    
     @State var isLiked = false
     
-    var nickname = "artur"
-    var text = "fjfjfjfjfjfjf"
-    
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 0) {
             HStack {
                 Image("photo")
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
+                    .resizable()
+                    .imageCircleStyle(diameter: 70)
                 Spacer()
-                Text("nickname")
+                Text("\(post.userEmail)")
                     .font(.title)
                     .fontWeight(.semibold)
                 Spacer()
             }
-            .padding(.top)
-            .padding(.leading)
-            Image("photo")
+            
+            Image(uiImage: try! fileManager.readImage(with: post.image))
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+            
             HStack {
                 Spacer()
-                Text("Date")
+                Text(post.publishedAt.formatted(date: .abbreviated, time: .shortened))
                     .foregroundColor(.secondary)
                 Spacer()
                 Button(action: {
                     isLiked.toggle()
+                    databaseManager.setLike(from: activeUserEmail, to: post.id)
                 }, label: {
                     Image(systemName: isLiked ? "heart.fill" : "heart")
                         .font(.largeTitle)
-                    Text("1234")
+                    Text("\(post.likes.count)")
                 })
-                    .foregroundColor(.red)
-                    .shadow(color: .red, radius: 4, y: 3)
-                    .padding(.trailing)
+                .foregroundColor(.red)
+                .shadow(color: .red, radius: 4, y: 3)
+                .padding(.trailing)
             }
-            Text("\(nickname) \(text)")
+            .padding(.top)
+            .padding(.bottom)
+            
+            Text(post.comment)
                 .padding(.bottom)
                 .padding(.leading)
                 .padding(.trailing)
         }
         .background(.ultraThinMaterial)
         .cornerRadius(25)
-        //.strokeStyle(cornerRadius: 25)
         .shadow(color: .primary.opacity(0.3), radius: 5, x: 0, y: 5)
         .padding()
-        
-    }
-}
-
-struct PostView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostView()
+        .onAppear {
+            isLiked = databaseManager.isPostLiked(userEmail: activeUserEmail, to: post.id)
+        }
     }
 }
