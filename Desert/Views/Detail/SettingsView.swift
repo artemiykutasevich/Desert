@@ -18,14 +18,23 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section("Location") {
-                    HStack {
-                        Label("Location", systemImage: location ? "location" : "location.slash")
-                        Toggle("", isOn: $location)
-                    }
-                }
-                .listRowBackground(Color("Color 4"))
-                .foregroundColor(.primary)
+//                // Future
+//                Section("Account settings") {
+//                    Label("Change avatar", systemImage: "person")
+//                    Label("Change nickname", systemImage: "textformat.abc")
+//                    Label("Change password", systemImage: "textformat.123")
+//                }
+//                .listRowBackground(Color("Color 4"))
+//                .foregroundColor(.primary)
+                
+//                Section("Location") {
+//                    HStack {
+//                        Label("Location", systemImage: location ? "location" : "location.slash")
+//                        Toggle("", isOn: $location)
+//                    }
+//                }
+//                .listRowBackground(Color("Color 4"))
+//                .foregroundColor(.primary)
                 
                 Section("Customization") {
                     HStack {
