@@ -21,44 +21,12 @@ struct AccountView: View {
             List {
                 Section {
                     profile
-                        .contextMenu {
-                            VStack {
-                                Button(action: {
-                                    // MARK: ADD logic of changing avatar
-                                    print("person")
-                                }, label: {
-                                    HStack {
-                                        Text("Change avatar")
-                                        Image(systemName: "person")
-                                    }
-                                })
-                                Button(action: {
-                                    // MARK: ADD logic of changing nickname
-                                    print("nickname")
-                                }, label: {
-                                    HStack {
-                                        Text("Change nickname")
-                                        Image(systemName: "textformat.abc")
-                                    }
-                                })
-                                Button(action: {
-                                    // MARK: ADD logic of changing password
-                                    print("password")
-                                }, label: {
-                                    HStack {
-                                        Text("Change password")
-                                        Image(systemName: "textformat.123")
-                                    }
-                                })
-                            }
-                        }
                     
                     Button(action: {
                         viewModel.showingPostsSheeet.toggle()
-                        viewModel.printActiveUser()
                     }, label: {
                         HStack {
-                            posts
+//                            posts
                             Spacer()
                             Text("My Posts")
                             Spacer()
@@ -72,7 +40,7 @@ struct AccountView: View {
                         viewModel.showingFriendsSheet.toggle()
                     }, label: {
                         HStack {
-                            friends
+//                            friends
                             Spacer()
                             Text("My Friends")
                             Spacer()
@@ -88,12 +56,16 @@ struct AccountView: View {
                         Label("Find Friend", systemImage: "person")
                     }
                 }
+                .listRowBackground(Color("Color 4"))
+                .foregroundColor(.primary)
                 
                 Section {
                     NavigationLink(destination: SettingsView()) {
                         Label("Settings", systemImage: "gear")
                     }
                 }
+                .listRowBackground(Color("Color 4"))
+                .foregroundColor(.primary)
                 
                 Section {
                     Button(action: {
@@ -152,20 +124,20 @@ struct AccountView: View {
     
     var friends: some View {
         ZStack {
-            Image("photo")
+            Image(systemName: "person")
                 .resizable()
                 .imageCircleStyle()
                 .imageCircleStrokeStyle(strokeSize: 3)
                 .scaleEffect(0.8)
             
-            Image("photo")
+            Image(systemName: "person")
                 .resizable()
                 .imageCircleStyle()
                 .imageCircleStrokeStyle(strokeSize: 3)
                 .scaleEffect(0.8)
                 .offset(x: 50)
             
-            Image("photo")
+            Image(systemName: "person")
                 .resizable()
                 .imageCircleStyle()
                 .imageCircleStrokeStyle(strokeSize: 3)
@@ -178,20 +150,20 @@ struct AccountView: View {
     
     var posts: some View {
         ZStack {
-            Image("photo")
+            Image(systemName: "photo")
                 .resizable()
                 .imageRoundedRectangleStyle()
                 .imageRoundedRectangleStrokeStyle(strokeSize: 3)
                 .scaleEffect(0.8)
             
-            Image("photo")
+            Image(systemName: "photo")
                 .resizable()
                 .imageRoundedRectangleStyle()
                 .imageRoundedRectangleStrokeStyle(strokeSize: 3)
                 .scaleEffect(0.8)
                 .offset(x: 50)
             
-            Image("photo")
+            Image(systemName: "photo")
                 .resizable()
                 .imageRoundedRectangleStyle()
                 .imageRoundedRectangleStrokeStyle(strokeSize: 3)

@@ -8,15 +8,17 @@
 import SwiftUI
 import RealmSwift
 
-class DatabaseManeger {
+class DatabaseManager {
     @ObservedResults(DatabaseUsers.self) var users
     @ObservedResults(DatabasePosts.self) var posts
     
-    static let databaseManager = DatabaseManeger()
+    static let databaseManager = DatabaseManager()
     
     private init() { /* Singleton */ }
     
     private let realm = try! Realm()
+    
+    // MARK: Find User
     
     func findUser(by email: String) -> DatabaseUsers {
         var realmUser = DatabaseUsers()
@@ -40,6 +42,17 @@ class DatabaseManeger {
         return realmUser
     }
     
+    func isUserCreated(user email: String) -> Bool {
+        var answer = false
+        
+        for user in users {
+            if user.email == email {
+                answer = true
+            }
+        }
+        return answer
+    }
+    
     // MARK: Registration View
     
     func addUser(nickname: String, email: String, password: String) {
@@ -51,10 +64,6 @@ class DatabaseManeger {
         try! realm.write {
             realm.add(user)
         }
-    }
-    
-    func printUsers() {
-        print(realm.objects(DatabaseUsers.self))
     }
     
     // MARK: Forgot Password View
@@ -74,27 +83,6 @@ class DatabaseManeger {
         
         for user in users {
             if user.email == email && user.password == password {
-                answer = true
-            }
-        }
-        return answer
-    }
-    
-    // MARK: ///
-    
-    func changePassword(for email: String, new password: String) {
-        let user = findUser(by: email)
-        
-        try? realm.write {
-            user.password = password
-        }
-    }
-    
-    func isUserCreated(user email: String) -> Bool {
-        var answer = false
-        
-        for user in users {
-            if user.email == email {
                 answer = true
             }
         }
@@ -135,6 +123,32 @@ class DatabaseManeger {
         return array
     }
     
+    func findUserPosts(userEmail: String) -> [DatabasePosts] {
+        let user = findUser(by: userEmail)
+        var postMain = [DatabasePosts]()
+        
+        if !user.posts.isEmpty {
+            for post in user.posts {
+                postMain.append(post)
+            }
+        }
+        return postMain
+    }
+    
+    func findFriendsPosts(userEmail: String) -> [DatabasePosts] {
+        let friends = findFriends(email: userEmail)
+        var postsMain = [DatabasePosts]()
+        
+        for friend in friends {
+            if !friend.posts.isEmpty {
+                for post in friend.posts {
+                    postsMain.append(post)
+                }
+            }
+        }
+        return postsMain
+    }
+    
     func makeRecommends(userEmail: String) -> [DatabaseFriend] {
         let userMain = makeFriend(reference: findUser(by: userEmail))
         
@@ -169,5 +183,79 @@ class DatabaseManeger {
             index = 0
         }
         return arrayOfUsers
+    }
+    
+    // MARK: Publications
+    
+    func addPublication(userEmail: String, image: UUID, comment: String) {
+        let user = findUser(by: userEmail)
+        
+        let post = DatabasePosts()
+        post.userEmail = userEmail
+        post.image = image
+        post.comment = comment
+        
+        try? realm.write {
+            user.posts.append(post)
+        }
+    }
+    
+    func findPost(by postId: UUID) -> DatabasePosts {
+        var result = DatabasePosts()
+        
+        for post in posts {
+            if post.id == postId {
+                result = post
+            }
+        }
+        return result
+    }
+    
+    func setLike(from userEmailMain: String, to post: UUID) {
+        let postMain = findPost(by: post)
+        let isLiked = isPostLiked(userEmail: userEmailMain, to: post)
+        
+        if isLiked {
+            try? realm.write {
+                var index = 0
+                for like in postMain.likes {
+                    if like == userEmailMain {
+                        break
+                    }
+                    index += 1
+                }
+                postMain.likes.remove(at: index)
+            }
+        } else {
+            try? realm.write {
+                postMain.likes.append(userEmailMain)
+            }
+        }
+    }
+    
+    func isPostLiked(userEmail: String, to post: UUID) -> Bool {
+        let post = findPost(by: post)
+        var result = false
+        
+        if post.likes.isEmpty {
+            result = false
+        } else {
+            for user in post.likes {
+                if user == userEmail {
+                    result = true
+                }
+            }
+        }
+        return result
+    }
+    
+    // MARK: Future
+    
+    func changePassword(for email: String, new password: String) {
+        let user = findUser(by: email)
+        
+        try? realm.write {
+            user.password = password
+        }
     }
 }

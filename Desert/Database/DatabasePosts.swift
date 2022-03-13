@@ -13,7 +13,7 @@ class DatabasePosts: Object, Identifiable {
     @Persisted var userEmail: String
     
     @Persisted var publishedAt = Date()
-    @Persisted var image: String // url to image on device
+    @Persisted var image: UUID // name of image in document directory
     @Persisted var comment: String
     
     @Persisted var likes = List<String>()

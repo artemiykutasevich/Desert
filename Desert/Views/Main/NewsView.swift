@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct NewsView: View {
+    @StateObject private var viewModel = NewsViewModel()
+    
     var body: some View {
         ZStack {
             BackgroundView()
             ScrollView {
-                PostView()
+                if viewModel.posts != [] {
+                    ForEach(viewModel.posts) { post in
+                        PostView(post: post)
+                    }
+                } else {
+                    Text("Find friends to see they posts")
+                }
             }
             .safeAreaInset(edge: .top, content: {
                 Color.clear.frame(height: 70)
