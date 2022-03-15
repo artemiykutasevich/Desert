@@ -23,7 +23,7 @@ struct PostView: View {
                     .resizable()
                     .imageCircleStyle(diameter: 70)
                 Spacer()
-                Text("\(post.userEmail)")
+                Text("\(databaseManager.findUser(by: post.userEmail).nickname)")
                     .font(.title)
                     .fontWeight(.semibold)
                 Spacer()
