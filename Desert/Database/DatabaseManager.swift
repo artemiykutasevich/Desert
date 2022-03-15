@@ -258,4 +258,15 @@ class DatabaseManager {
             user.password = password
         }
     }
+    
+    // MARK: Location
+    
+    func addUserLocation(for email: String, latitude: Double, longitude: Double) {
+        let user = findUser(by: email)
+        
+        try? realm.write {
+            user.latitude = latitude
+            user.longitude = longitude
+        }
+    }
 }

@@ -24,6 +24,7 @@ struct AccountView: View {
                     
                     Button(action: {
                         viewModel.showingPostsSheeet.toggle()
+                        viewModel.printActiveUser()
                     }, label: {
                         HStack {
 //                            posts
@@ -97,12 +98,12 @@ struct AccountView: View {
                 .padding()
                 .background(Circle().fill(.ultraThinMaterial))
                 .background(
-                    BlobView()
+                    FirstBlobView()
                         .offset(x: 130, y: 50)
                         .scaleEffect(0.9)
                 )
                 .background(
-                    BlobView2()
+                    SecondBlobView2()
                         .offset(x: -270, y: 60)
                         .scaleEffect(0.7)
                 )
