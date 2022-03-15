@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct BlobView: View {
+// MARK: First Blob View
+
+struct FirstBlobView: View {
     @AppStorage("Animation") var animation = true
     @State var appear = false
     
@@ -71,7 +73,9 @@ struct BlobView: View {
     }
 }
 
-struct BlobView2: View {
+// MARK: Second Blob View
+
+struct SecondBlobView2: View {
     @AppStorage("Animation") var animation = true
     @State var appear = false
     
@@ -135,6 +139,8 @@ struct BlobView2: View {
     }
 }
 
+// MARK: Blob Shape
+
 struct BlobShape: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -152,6 +158,6 @@ struct BlobShape: Shape {
 
 struct BlobView_Previews: PreviewProvider {
     static var previews: some View {
-        BlobView()
+        FirstBlobView()
     }
 }
