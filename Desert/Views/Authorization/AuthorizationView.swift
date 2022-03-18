@@ -17,6 +17,9 @@ struct AuthorizationView: View {
                 DesertView()
                 authorization
             }
+            .onAppear {
+                viewModel.printUsers()
+            }
         }
     }
     

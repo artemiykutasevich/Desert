@@ -9,11 +9,12 @@ import SwiftUI
 import MapKit
 
 extension MapView {
-    @MainActor class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         @AppStorage("ActiveUserEmail") var activeUserEmail = ""
         var locationManager: CLLocationManager?
         
-        let databaseManager = DatabaseManager.databaseManager
+        private let databaseManager = DatabaseManager.databaseManager
+        private let fileManager = FileManager()
         
         @Published var friends = [DatabaseFriend]()
         
@@ -64,6 +65,17 @@ extension MapView {
         
         func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
             checkLocationAuthorization()
+        }
+        
+        func getAvatar(userID: UUID) -> UIImage {
+            var image = UIImage()
+            do {
+                image = try fileManager.readImage(with: databaseManager.findUser(by: userID).avatar ?? UUID())
+            } catch let error {
+                print(error.localizedDescription)
+                image = UIImage(named: "photo")!
+            }
+            return image
         }
     }
 }

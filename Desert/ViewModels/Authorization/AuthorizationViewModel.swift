@@ -8,12 +8,11 @@
 import SwiftUI
 
 extension AuthorizationView {
-    @MainActor class AuthorizationViewModel: ObservableObject {
+    class AuthorizationViewModel: ObservableObject {
         @AppStorage("ActiveUserEmail") var activeUserEmail = ""
         
         @Published var email = ""
         @Published var password = ""
-        
         @Published var showingAlert = false
         
         private let databaseManager = DatabaseManager.databaseManager
@@ -28,6 +27,10 @@ extension AuthorizationView {
             } else {
                 showingAlert = true
             }
+        }
+        
+        func printUsers() {
+            databaseManager.printUsers()
         }
     }
 }

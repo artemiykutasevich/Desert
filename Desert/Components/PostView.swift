@@ -19,7 +19,7 @@ struct PostView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Image("photo")
+                Image(uiImage: getAvatar(post: post))
                     .resizable()
                     .imageCircleStyle(diameter: 70)
                 Spacer()
@@ -65,5 +65,16 @@ struct PostView: View {
         .onAppear {
             isLiked = databaseManager.isPostLiked(userEmail: activeUserEmail, to: post.id)
         }
+    }
+    
+    func getAvatar(post: DatabasePosts) -> UIImage {
+        var image = UIImage()
+        do {
+            image = try fileManager.readImage(with: databaseManager.findUser(by: post.userEmail).avatar ?? UUID())
+        } catch let error {
+            print(error.localizedDescription)
+            image = UIImage(named: "photo")!
+        }
+        return image
     }
 }

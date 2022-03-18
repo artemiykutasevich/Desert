@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MyImage: Identifiable, Codable {
     var id = UUID()
-    var name: String
     
     var image: UIImage {
         do {

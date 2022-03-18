@@ -14,7 +14,7 @@ class DatabaseUsers: Object, Identifiable {
     @Persisted var email: String
     @Persisted var password: String
     
-    @Persisted var avatar: String //url to image on device
+    @Persisted var avatar: UUID?
     
     @Persisted var latitude = 0.0
     @Persisted var longitude = 0.0

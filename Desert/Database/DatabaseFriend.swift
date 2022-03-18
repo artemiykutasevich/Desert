@@ -13,7 +13,7 @@ class DatabaseFriend: Object, Identifiable {
     @Persisted var nickname: String
     @Persisted var email: String
     
-    @Persisted var avatar: String //url to image on device
+    @Persisted var avatar: UUID?
     
     @Persisted var latitude = 0.0
     @Persisted var longitude = 0.0
@@ -21,7 +21,7 @@ class DatabaseFriend: Object, Identifiable {
     @Persisted var friends = List<UUID>()
     @Persisted var posts = List<DatabasePosts>()
     
-    convenience init(id: UUID, nickname: String, email: String, avatar: String, latitude: Double, longitude: Double, friends: List<UUID>, posts: List<DatabasePosts>) {
+    convenience init(id: UUID, nickname: String, email: String, avatar: UUID?, latitude: Double, longitude: Double, friends: List<UUID>, posts: List<DatabasePosts>) {
         self.init()
         self.id = id
         self.nickname = nickname

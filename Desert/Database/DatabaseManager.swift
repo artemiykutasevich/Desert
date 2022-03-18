@@ -269,4 +269,16 @@ class DatabaseManager {
             user.longitude = longitude
         }
     }
+    
+    func printUsers() {
+        print(users)
+    }
+    
+    func addAvatar(userEmail: String, image: UUID) {
+        let user = findUser(by: userEmail)
+        
+        try? realm.write {
+            user.avatar = image
+        }
+    }
 }

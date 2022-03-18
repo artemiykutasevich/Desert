@@ -17,9 +17,9 @@ struct FriendsView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.friends ?? []) { friend in
+                ForEach(viewModel.friends) { friend in
                     HStack {
-                        Image("photo")
+                        Image(uiImage: viewModel.getAvatar(friend: friend))
                             .resizable()
                             .imageCircleStyle()
                             .imageCircleStrokeStyle()

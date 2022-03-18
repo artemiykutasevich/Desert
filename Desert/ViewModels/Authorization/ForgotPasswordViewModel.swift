@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension ForgotPasswordView {
-    @MainActor class ForgotPasswordViewModel: ObservableObject {
+    class ForgotPasswordViewModel: ObservableObject {
         @Published var email = ""
         
         @Published var showingAlert = false
@@ -16,7 +16,9 @@ extension ForgotPasswordView {
         private let databaseManager = DatabaseManager.databaseManager
         
         func resetPassword() {
-            databaseManager.resetPassword(for: email)
+            DispatchQueue.main.async { [self] in
+                databaseManager.resetPassword(for: email)
+            }
             email = ""
         }
     }

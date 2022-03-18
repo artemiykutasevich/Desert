@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B80AA96E27E0AA7900DBEBDA /* CustomMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80AA96D27E0AA7900DBEBDA /* CustomMapAnnotation.swift */; };
+		B80AA96E27E0AA7900DBEBDA /* FriendMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80AA96D27E0AA7900DBEBDA /* FriendMapAnnotation.swift */; };
 		B80F4A1F27D9E6DF0073229E /* PublicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80F4A1E27D9E6DF0073229E /* PublicationViewModel.swift */; };
 		B80F4A2127D9F1520073229E /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80F4A2027D9F1520073229E /* Picker.swift */; };
 		B81970AA27DB564B00FAFE55 /* ImageModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81970A927DB564B00FAFE55 /* ImageModifiers.swift */; };
@@ -45,11 +45,14 @@
 		B899ABB427D73BDA00B81A29 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899ABB327D73BDA00B81A29 /* PostView.swift */; };
 		B899ABB627D73DB200B81A29 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899ABB527D73DB200B81A29 /* Tab.swift */; };
 		B899ABB927D73DFA00B81A29 /* PreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B899ABB827D73DFA00B81A29 /* PreferenceKey.swift */; };
-		B89F1E7127D75156003CAE99 /* FirstBlobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F1E7027D75156003CAE99 /* FirstBlobView.swift */; };
+		B89F1E7127D75156003CAE99 /* BlobViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F1E7027D75156003CAE99 /* BlobViews.swift */; };
 		B89F1E7427D75568003CAE99 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F1E7327D75568003CAE99 /* FriendsView.swift */; };
 		B89F1E7627D755CA003CAE99 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89F1E7527D755CA003CAE99 /* SettingsView.swift */; };
 		B8A2552327DF7C850049A5EA /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A2552227DF7C850049A5EA /* MapViewModel.swift */; };
 		B8A2552527DF867E0049A5EA /* MapDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A2552427DF867E0049A5EA /* MapDetails.swift */; };
+		B8A2E62627E465CF0010DD88 /* ChangeAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A2E62527E465CF0010DD88 /* ChangeAvatarView.swift */; };
+		B8A2E62827E46A7E0010DD88 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A2E62727E46A7E0010DD88 /* SettingsViewModel.swift */; };
+		B8A2E62C27E46CA20010DD88 /* ChangeAvatarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A2E62B27E46CA20010DD88 /* ChangeAvatarViewModel.swift */; };
 		B8A94AF227DCFA100000B1FF /* DatabaseFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A94AF127DCFA100000B1FF /* DatabaseFriend.swift */; };
 		B8A94AF427DCFE440000B1FF /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A94AF327DCFE440000B1FF /* FriendViewModel.swift */; };
 		B8A94AFA27DDDE460000B1FF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A94AF927DDDE460000B1FF /* ImagePicker.swift */; };
@@ -79,7 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B80AA96D27E0AA7900DBEBDA /* CustomMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapAnnotation.swift; sourceTree = "<group>"; };
+		B80AA96D27E0AA7900DBEBDA /* FriendMapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendMapAnnotation.swift; sourceTree = "<group>"; };
 		B80F4A1E27D9E6DF0073229E /* PublicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicationViewModel.swift; sourceTree = "<group>"; };
 		B80F4A2027D9F1520073229E /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
 		B81970A927DB564B00FAFE55 /* ImageModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModifiers.swift; sourceTree = "<group>"; };
@@ -118,11 +121,14 @@
 		B899ABB327D73BDA00B81A29 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		B899ABB527D73DB200B81A29 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		B899ABB827D73DFA00B81A29 /* PreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKey.swift; sourceTree = "<group>"; };
-		B89F1E7027D75156003CAE99 /* FirstBlobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstBlobView.swift; sourceTree = "<group>"; };
+		B89F1E7027D75156003CAE99 /* BlobViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlobViews.swift; sourceTree = "<group>"; };
 		B89F1E7327D75568003CAE99 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		B89F1E7527D755CA003CAE99 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B8A2552227DF7C850049A5EA /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		B8A2552427DF867E0049A5EA /* MapDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetails.swift; sourceTree = "<group>"; };
+		B8A2E62527E465CF0010DD88 /* ChangeAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAvatarView.swift; sourceTree = "<group>"; };
+		B8A2E62727E46A7E0010DD88 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		B8A2E62B27E46CA20010DD88 /* ChangeAvatarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAvatarViewModel.swift; sourceTree = "<group>"; };
 		B8A94AF127DCFA100000B1FF /* DatabaseFriend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseFriend.swift; sourceTree = "<group>"; };
 		B8A94AF327DCFE440000B1FF /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
 		B8A94AF927DDDE460000B1FF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -251,9 +257,9 @@
 				B899AB8B27D695B000B81A29 /* BackgroundView.swift */,
 				B899AB9727D7162C00B81A29 /* DesertView.swift */,
 				B899ABB327D73BDA00B81A29 /* PostView.swift */,
-				B89F1E7027D75156003CAE99 /* FirstBlobView.swift */,
+				B89F1E7027D75156003CAE99 /* BlobViews.swift */,
 				B8A94AF927DDDE460000B1FF /* ImagePicker.swift */,
-				B80AA96D27E0AA7900DBEBDA /* CustomMapAnnotation.swift */,
+				B80AA96D27E0AA7900DBEBDA /* FriendMapAnnotation.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -315,6 +321,8 @@
 			isa = PBXGroup;
 			children = (
 				B81970AB27DB5D8100FAFE55 /* FindFriendsViewModel.swift */,
+				B8A2E62727E46A7E0010DD88 /* SettingsViewModel.swift */,
+				B8A2E62B27E46CA20010DD88 /* ChangeAvatarViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -376,6 +384,7 @@
 			children = (
 				B89F1E7527D755CA003CAE99 /* SettingsView.swift */,
 				B85A32D527D918720076DA6A /* FindFriendsView.swift */,
+				B8A2E62527E465CF0010DD88 /* ChangeAvatarView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -536,7 +545,7 @@
 				B899AB8E27D69BB500B81A29 /* RegistrationViewModel.swift in Sources */,
 				B8A94B0027DDE0AC0000B1FF /* MyImageError.swift in Sources */,
 				B8A94AFA27DDDE460000B1FF /* ImagePicker.swift in Sources */,
-				B80AA96E27E0AA7900DBEBDA /* CustomMapAnnotation.swift in Sources */,
+				B80AA96E27E0AA7900DBEBDA /* FriendMapAnnotation.swift in Sources */,
 				B899ABB627D73DB200B81A29 /* Tab.swift in Sources */,
 				B899ABB427D73BDA00B81A29 /* PostView.swift in Sources */,
 				B80F4A1F27D9E6DF0073229E /* PublicationViewModel.swift in Sources */,
@@ -544,6 +553,8 @@
 				B89F1E7427D75568003CAE99 /* FriendsView.swift in Sources */,
 				B85C9C1927D66AED0077B228 /* ContentView.swift in Sources */,
 				B899AB7327D68A2000B81A29 /* DatabaseUsers.swift in Sources */,
+				B8A2E62627E465CF0010DD88 /* ChangeAvatarView.swift in Sources */,
+				B8A2E62827E46A7E0010DD88 /* SettingsViewModel.swift in Sources */,
 				B85A32D627D918720076DA6A /* FindFriendsView.swift in Sources */,
 				B85C9C1727D66AED0077B228 /* DesertApp.swift in Sources */,
 				B89F1E7627D755CA003CAE99 /* SettingsView.swift in Sources */,
@@ -562,6 +573,7 @@
 				B80F4A2127D9F1520073229E /* Picker.swift in Sources */,
 				B899AB6F27D689BA00B81A29 /* ForgotPasswordView.swift in Sources */,
 				B899AB5F27D688AB00B81A29 /* TabBar.swift in Sources */,
+				B8A2E62C27E46CA20010DD88 /* ChangeAvatarViewModel.swift in Sources */,
 				B8A94AFC27DDDE8C0000B1FF /* MyImage.swift in Sources */,
 				B899AB8C27D695B000B81A29 /* BackgroundView.swift in Sources */,
 				B8B0365B27DBB19B00B1CDBF /* AccountViewModel.swift in Sources */,
@@ -569,7 +581,7 @@
 				B899AB9827D7162C00B81A29 /* DesertView.swift in Sources */,
 				B899AB9227D70E9600B81A29 /* TextFieldModifier.swift in Sources */,
 				B899AB7627D68A5000B81A29 /* DatabasePosts.swift in Sources */,
-				B89F1E7127D75156003CAE99 /* FirstBlobView.swift in Sources */,
+				B89F1E7127D75156003CAE99 /* BlobViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,7 +669,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -712,7 +724,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

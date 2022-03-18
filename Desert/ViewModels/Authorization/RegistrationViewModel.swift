@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension RegistrationView {
-    @MainActor class RegistrationViewModel: ObservableObject {
+    class RegistrationViewModel: ObservableObject {
         @Published var nickname = ""
         @Published var email = ""
         @Published var firstPassword = ""
@@ -19,11 +19,9 @@ extension RegistrationView {
         private let databaseManager = DatabaseManager.databaseManager
         
         func registrationUser() {
-            databaseManager.addUser(nickname: nickname, email: email, password: firstPassword)
-            nickname = ""
-            email = ""
-            firstPassword = ""
-            secondPassword = ""
+            DispatchQueue.main.async { [self] in
+                databaseManager.addUser(nickname: nickname, email: email, password: firstPassword)
+            }
         }
     }
 }

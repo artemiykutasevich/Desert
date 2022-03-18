@@ -1,14 +1,14 @@
 //
-//  PublicationView.swift
+//  ChangeAvatarView.swift
 //  Desert
 //
-//  Created by Artem Kutasevich on 7.03.22.
+//  Created by Artem Kutasevich on 18.03.22.
 //
 
 import SwiftUI
 
-struct PublicationView: View {
-    @StateObject private var viewModel = PublicationViewModel()
+struct ChangeAvatarView: View {
+    @StateObject private var viewModel = ChangeAvatarViewModel()
     
     var body: some View {
         NavigationView {
@@ -51,15 +51,12 @@ struct PublicationView: View {
                 }
                 .padding(.bottom)
                 
-                TextField("Description", text: $viewModel.description)
-                    .textFieldStyle()
-                
                 Button(action: {
                     if viewModel.selectedImage == nil {
                         viewModel.addMyImage(image: viewModel.image!)
                     }
                 }, label: {
-                    Text("Add publication")
+                    Text("Change avatar")
                         .fontWeight(.bold)
                 })
                 .buttonStyle()
@@ -68,7 +65,7 @@ struct PublicationView: View {
             }
             .padding()
             .background(Color("Color 1"))
-            .navigationTitle("Add publication")
+            .navigationTitle("Change avatar")
             .sheet(isPresented: $viewModel.showPicker) {
                 ImagePicker(sourceType: viewModel.source == .library ? .photoLibrary : .camera, selectedImage: $viewModel.image)
                     .ignoresSafeArea()
@@ -79,11 +76,12 @@ struct PublicationView: View {
                 Text(cameraError.message)
             })
         }
+
     }
 }
 
-struct NewPublication_Previews: PreviewProvider {
+struct ChangeAvatarView_Previews: PreviewProvider {
     static var previews: some View {
-        PublicationView()
+        ChangeAvatarView()
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct PostsView: View {
     @StateObject private var viewModel = PostsViewModel()
     
-    let filemanager = FileManager()
+    let fileManager = FileManager()
     
     var body: some View {
         NavigationView {
@@ -18,7 +18,7 @@ struct PostsView: View {
                 if viewModel.posts != [] {
                     ForEach(viewModel.posts) { post in
                         HStack {
-                            Image(uiImage: try! filemanager.readImage(with: post.image))
+                            Image(uiImage: try! fileManager.readImage(with: post.image))
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 100)

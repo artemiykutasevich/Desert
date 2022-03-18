@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension PostsView {
-    @MainActor class PostsViewModel: ObservableObject {
+    class PostsViewModel: ObservableObject {
         @AppStorage("ActiveUserEmail") var activeUserEmail = ""
         private let databaseManager = DatabaseManager.databaseManager
         

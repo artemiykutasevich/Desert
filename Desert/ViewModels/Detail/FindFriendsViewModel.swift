@@ -9,29 +9,41 @@ import SwiftUI
 import RealmSwift
 
 extension FindFriendsView {
-    @MainActor class FindFriendsViewModel: ObservableObject {
+    class FindFriendsViewModel: ObservableObject {
         @AppStorage("ActiveUserEmail") var activeUserEmail = ""
         
-        private let databaseManeger = DatabaseManager.databaseManager
-        @Published var recomends = [DatabaseFriend]()
+        private let databaseManager = DatabaseManager.databaseManager
+        private let fileManager = FileManager()
+        @Published var recommends = [DatabaseFriend]()
         
         init() {
             DispatchQueue.main.async { [self] in
-                recomends = databaseManeger.makeRecommends(userEmail: activeUserEmail)
+                recommends = databaseManager.makeRecommends(userEmail: activeUserEmail)
             }
         }
         
         func updateRecommends() {
-            recomends = []
+            recommends = []
             DispatchQueue.main.async { [self] in
-                recomends = databaseManeger.makeRecommends(userEmail: activeUserEmail)
+                recommends = databaseManager.makeRecommends(userEmail: activeUserEmail)
             }
         }
         
         func addFriends(friendEmail: String) {
             DispatchQueue.main.async { [self] in
-                databaseManeger.addFriend(userEmail: activeUserEmail, friendEmail: friendEmail)
+                databaseManager.addFriend(userEmail: activeUserEmail, friendEmail: friendEmail)
             }
+        }
+        
+        func getAvatar(friend: DatabaseFriend) -> UIImage {
+            var image = UIImage()
+            do {
+                image = try fileManager.readImage(with: databaseManager.findUser(by: friend.id).avatar ?? UUID())
+            } catch let error {
+                print(error.localizedDescription)
+                image = UIImage(named: "photo")!
+            }
+            return image
         }
     }
 }

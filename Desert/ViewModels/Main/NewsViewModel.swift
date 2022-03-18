@@ -9,7 +9,7 @@ import SwiftUI
 import RealmSwift
 
 extension NewsView {
-    @MainActor class NewsViewModel: ObservableObject {
+    class NewsViewModel: ObservableObject {
         @AppStorage("ActiveUserEmail") var activeUserEmail = ""
         private let databaseManager = DatabaseManager.databaseManager
         

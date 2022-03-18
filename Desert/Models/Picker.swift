@@ -10,7 +10,7 @@ import AVFoundation
 
 enum Picker {
     enum Source: String {
-        case libriary
+        case library
         case camera
     }
     

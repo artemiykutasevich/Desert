@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var location = true
-    @AppStorage("Animation") var animation = true
-
+    @StateObject private var viewModel = SettingsViewModel()
+    
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color("Color 1"))
     }
@@ -18,28 +17,22 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             List {
-//                // Future
-//                Section("Account settings") {
-//                    Label("Change avatar", systemImage: "person")
-//                    Label("Change nickname", systemImage: "textformat.abc")
-//                    Label("Change password", systemImage: "textformat.123")
-//                }
-//                .listRowBackground(Color("Color 4"))
-//                .foregroundColor(.primary)
-                
-//                Section("Location") {
-//                    HStack {
-//                        Label("Location", systemImage: location ? "location" : "location.slash")
-//                        Toggle("", isOn: $location)
-//                    }
-//                }
-//                .listRowBackground(Color("Color 4"))
-//                .foregroundColor(.primary)
+                Section("Account settings") {
+                    NavigationLink(destination: ChangeAvatarView()) {
+                        Label("Change avatar", systemImage: "person")
+                    }
+                    Label("Change nickname", systemImage: "textformat.abc")
+                    Label("Change password", systemImage: "textformat.123")
+                    Toggle(isOn: $viewModel.location) {
+                        Label("Show my location", systemImage: viewModel.location ? "play" : "pause")
+                    }
+                }
+                .listRowBackground(Color("Color 4"))
+                .foregroundColor(.primary)
                 
                 Section("Customization") {
-                    HStack {
-                        Label("Animations", systemImage: animation ? "play" : "pause")
-                        Toggle("", isOn: $animation)
+                    Toggle(isOn: $viewModel.animation) {
+                        Label("Animations", systemImage: viewModel.animation ? "play" : "pause")
                     }
                 }
                 .listRowBackground(Color("Color 4"))

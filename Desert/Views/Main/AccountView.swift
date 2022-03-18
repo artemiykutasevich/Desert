@@ -23,7 +23,7 @@ struct AccountView: View {
                     profile
                     
                     Button(action: {
-                        viewModel.showingPostsSheeet.toggle()
+                        viewModel.showingPostsSheet.toggle()
                         viewModel.printActiveUser()
                     }, label: {
                         HStack {
@@ -33,7 +33,7 @@ struct AccountView: View {
                             Spacer()
                         }
                     })
-                    .sheet(isPresented: $viewModel.showingPostsSheeet) {
+                    .sheet(isPresented: $viewModel.showingPostsSheet) {
                         PostsView()
                     }
                     
@@ -91,12 +91,10 @@ struct AccountView: View {
     
     var profile: some View {
         VStack(spacing: 8) {
-            Image(systemName: "person.crop.circle.fill.badge.checkmark")
-                .font(.largeTitle)
-                .symbolRenderingMode(.palette)
-                .foregroundStyle(.green, Color("Color 4"))
-                .padding()
-                .background(Circle().fill(.ultraThinMaterial))
+            Image(uiImage: viewModel.getAvatar())
+                .resizable()
+                .imageCircleStyle(diameter: 100)
+                .imageCircleStrokeStyle()
                 .background(
                     FirstBlobView()
                         .offset(x: 130, y: 50)
@@ -123,55 +121,55 @@ struct AccountView: View {
     
     // MARK: friends
     
-    var friends: some View {
-        ZStack {
-            Image(systemName: "person")
-                .resizable()
-                .imageCircleStyle()
-                .imageCircleStrokeStyle(strokeSize: 3)
-                .scaleEffect(0.8)
-            
-            Image(systemName: "person")
-                .resizable()
-                .imageCircleStyle()
-                .imageCircleStrokeStyle(strokeSize: 3)
-                .scaleEffect(0.8)
-                .offset(x: 50)
-            
-            Image(systemName: "person")
-                .resizable()
-                .imageCircleStyle()
-                .imageCircleStrokeStyle(strokeSize: 3)
-                .scaleEffect(0.9)
-                .offset(x: 25)
-        }
-    }
+//    var friends: some View {
+//        ZStack {
+//            Image(systemName: "person")
+//                .resizable()
+//                .imageCircleStyle()
+//                .imageCircleStrokeStyle(strokeSize: 3)
+//                .scaleEffect(0.8)
+//
+//            Image(systemName: "person")
+//                .resizable()
+//                .imageCircleStyle()
+//                .imageCircleStrokeStyle(strokeSize: 3)
+//                .scaleEffect(0.8)
+//                .offset(x: 50)
+//
+//            Image(systemName: "person")
+//                .resizable()
+//                .imageCircleStyle()
+//                .imageCircleStrokeStyle(strokeSize: 3)
+//                .scaleEffect(0.9)
+//                .offset(x: 25)
+//        }
+//    }
     
     // MARK: posts
     
-    var posts: some View {
-        ZStack {
-            Image(systemName: "photo")
-                .resizable()
-                .imageRoundedRectangleStyle()
-                .imageRoundedRectangleStrokeStyle(strokeSize: 3)
-                .scaleEffect(0.8)
-            
-            Image(systemName: "photo")
-                .resizable()
-                .imageRoundedRectangleStyle()
-                .imageRoundedRectangleStrokeStyle(strokeSize: 3)
-                .scaleEffect(0.8)
-                .offset(x: 50)
-            
-            Image(systemName: "photo")
-                .resizable()
-                .imageRoundedRectangleStyle()
-                .imageRoundedRectangleStrokeStyle(strokeSize: 3)
-                .scaleEffect(0.9)
-                .offset(x: 25)
-        }
-    }
+//    var posts: some View {
+//        ZStack {
+//            Image(systemName: "photo")
+//                .resizable()
+//                .imageRoundedRectangleStyle()
+//                .imageRoundedRectangleStrokeStyle(strokeSize: 3)
+//                .scaleEffect(0.8)
+//
+//            Image(systemName: "photo")
+//                .resizable()
+//                .imageRoundedRectangleStyle()
+//                .imageRoundedRectangleStrokeStyle(strokeSize: 3)
+//                .scaleEffect(0.8)
+//                .offset(x: 50)
+//
+//            Image(systemName: "photo")
+//                .resizable()
+//                .imageRoundedRectangleStyle()
+//                .imageRoundedRectangleStrokeStyle(strokeSize: 3)
+//                .scaleEffect(0.9)
+//                .offset(x: 25)
+//        }
+//    }
 }
 
 struct AccountView_Previews: PreviewProvider {
