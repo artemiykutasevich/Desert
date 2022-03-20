@@ -122,16 +122,6 @@ struct AccountView: View {
     
     var friends: some View {
         ZStack {
-            if viewModel.friends.count >= 1 {
-                let image = viewModel.getAvatar(uuid: viewModel.friends[0].avatar ?? UUID())
-                Image(uiImage: image)
-                    .resizable()
-                    .imageCircleStyle()
-                    .imageCircleStrokeStyle(strokeSize: 3)
-                    .scaleEffect(0.9)
-                    .offset(x: 25)
-            }
-            
             if viewModel.friends.count >= 2 {
                 let image = viewModel.getAvatar(uuid: viewModel.friends[1].avatar ?? UUID())
                 Image(uiImage: image)
@@ -150,6 +140,16 @@ struct AccountView: View {
                     .scaleEffect(0.8)
                     .offset(x: 50)
             }
+            
+            if viewModel.friends.count >= 1 {
+                let image = viewModel.getAvatar(uuid: viewModel.friends[0].avatar ?? UUID())
+                Image(uiImage: image)
+                    .resizable()
+                    .imageCircleStyle()
+                    .imageCircleStrokeStyle(strokeSize: 3)
+                    .scaleEffect(0.9)
+                    .offset(x: 25)
+            }
         }
     }
     
@@ -157,16 +157,6 @@ struct AccountView: View {
     
     var posts: some View {
         ZStack {
-            if viewModel.posts.count >= 1 {
-                let image = viewModel.getAvatar(uuid: viewModel.posts[0].image)
-                Image(uiImage: image)
-                    .resizable()
-                    .imageRoundedRectangleStyle()
-                    .imageRoundedRectangleStrokeStyle(strokeSize: 3)
-                    .scaleEffect(0.9)
-                    .offset(x: 25)
-            }
-            
             if viewModel.posts.count >= 2 {
                 let image = viewModel.getAvatar(uuid: viewModel.posts[1].image)
                 Image(uiImage: image)
@@ -184,6 +174,16 @@ struct AccountView: View {
                     .imageRoundedRectangleStrokeStyle(strokeSize: 3)
                     .scaleEffect(0.8)
                     .offset(x: 50)
+            }
+            
+            if viewModel.posts.count >= 1 {
+                let image = viewModel.getAvatar(uuid: viewModel.posts[0].image)
+                Image(uiImage: image)
+                    .resizable()
+                    .imageRoundedRectangleStyle()
+                    .imageRoundedRectangleStrokeStyle(strokeSize: 3)
+                    .scaleEffect(0.9)
+                    .offset(x: 25)
             }
         }
     }
