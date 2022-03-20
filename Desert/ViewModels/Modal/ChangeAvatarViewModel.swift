@@ -1,17 +1,15 @@
 //
-//  PublicationViewModel.swift
+//  ChangeAvatarViewModel.swift
 //  Desert
 //
-//  Created by Artem Kutasevich on 10.03.22.
+//  Created by Artem Kutasevich on 18.03.22.
 //
 
 import SwiftUI
 
-class PublicationViewModel: ObservableObject {
+class ChangeAvatarViewModel: ObservableObject {
     @AppStorage("ActiveUserEmail") var activeUserEmail = ""
     private let databaseManager = DatabaseManager.databaseManager
-    
-    @Published var description = ""
     
     @Published var image: UIImage?
     @Published var showPicker = false
@@ -38,7 +36,6 @@ class PublicationViewModel: ObservableObject {
     
     func reset() {
         image = nil
-        description = ""
     }
     
     func addMyImage(image: UIImage) {
@@ -46,7 +43,7 @@ class PublicationViewModel: ObservableObject {
         do {
             try FileManager().saveImage("\(myImage.id)", image: image)
             myImages.append(myImage)
-            databaseManager.addPublication(userEmail: activeUserEmail, image: myImage.id, comment: description)
+            databaseManager.addAvatar(userEmail: activeUserEmail, image: myImage.id)
         } catch {
             showFileAlert = true
             appError = MyImageError.ErrorType(error: error as! MyImageError)

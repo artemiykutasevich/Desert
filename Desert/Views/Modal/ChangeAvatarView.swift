@@ -76,7 +76,6 @@ struct ChangeAvatarView: View {
                 Text(cameraError.message)
             })
         }
-
     }
 }
 

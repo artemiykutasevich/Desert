@@ -37,6 +37,7 @@ struct NavigationBar: View {
                             .frame(width: 40, height: 40)
                             .foregroundColor(.secondary)
                             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+                            .shadow(color: .primary.opacity(0.3), radius: 5, x: 0, y: 5)
                     })
                     .sheet(isPresented: $showingSheet) {
                         PublicationView()

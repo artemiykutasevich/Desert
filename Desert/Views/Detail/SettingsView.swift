@@ -18,13 +18,31 @@ struct SettingsView: View {
         NavigationView {
             List {
                 Section("Account settings") {
-                    NavigationLink(destination: ChangeAvatarView()) {
+                    Button(action: {
+                        viewModel.showingChangeAvatarSheet.toggle()
+                    }, label: {
                         Label("Change avatar", systemImage: "person")
+                    })
+                    .sheet(isPresented: $viewModel.showingChangeAvatarSheet) {
+                        ChangeAvatarView()
                     }
-                    Label("Change nickname", systemImage: "textformat.abc")
-                    Label("Change password", systemImage: "textformat.123")
-                    Toggle(isOn: $viewModel.location) {
-                        Label("Show my location", systemImage: viewModel.location ? "play" : "pause")
+                    
+                    Button(action: {
+                        viewModel.showingChangeNicknameSheet.toggle()
+                    }, label: {
+                        Label("Change nickname", systemImage: "textformat.abc")
+                    })
+                    .sheet(isPresented: $viewModel.showingChangeNicknameSheet) {
+                        ChangeNicknameView()
+                    }
+                    
+                    Button(action: {
+                        viewModel.showingChangePasswordSheet.toggle()
+                    }, label: {
+                        Label("Change password", systemImage: "textformat.123")
+                    })
+                    .sheet(isPresented: $viewModel.showingChangePasswordSheet) {
+                        ChangePasswordView()
                     }
                 }
                 .listRowBackground(Color("Color 4"))
@@ -52,6 +70,7 @@ struct SettingsView: View {
                 .listRowBackground(Color("Color 4"))
                 .foregroundColor(.primary)
             }
+            .background(Color("Color 1"))
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.large)
         }

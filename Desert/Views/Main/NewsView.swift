@@ -22,12 +22,9 @@ struct NewsView: View {
                     Text("Find friends to see they posts")
                 }
             }
-            .safeAreaInset(edge: .top, content: {
+            .safeAreaInset(edge: .top) {
                 Color.clear.frame(height: 70)
-            })
-            .safeAreaInset(edge: .bottom, content: {
-                Color.clear.frame(height: 70)
-            })
+            }
             .overlay(
                 NavigationBar(title: "News")
             )

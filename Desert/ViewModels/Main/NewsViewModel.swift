@@ -8,16 +8,15 @@
 import SwiftUI
 import RealmSwift
 
-extension NewsView {
-    class NewsViewModel: ObservableObject {
-        @AppStorage("ActiveUserEmail") var activeUserEmail = ""
-        private let databaseManager = DatabaseManager.databaseManager
-        
-        var posts = [DatabasePosts]()
-        
-        init() {
-            posts = databaseManager.findFriendsPosts(userEmail: activeUserEmail)
-            posts = posts.sorted { $0.publishedAt > $1.publishedAt }
-        }
+class NewsViewModel: ObservableObject {
+    @AppStorage("ActiveUserEmail") var activeUserEmail = ""
+    private let databaseManager = DatabaseManager.databaseManager
+    
+    var posts = [DatabasePosts]()
+    
+    init() {
+        posts = databaseManager.findFriendsPosts(userEmail: activeUserEmail)
+        posts = posts.sorted { $0.publishedAt > $1.publishedAt }
     }
 }
+

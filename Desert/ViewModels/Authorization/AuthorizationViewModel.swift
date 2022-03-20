@@ -7,30 +7,28 @@
 
 import SwiftUI
 
-extension AuthorizationView {
-    class AuthorizationViewModel: ObservableObject {
-        @AppStorage("ActiveUserEmail") var activeUserEmail = ""
-        
-        @Published var email = ""
-        @Published var password = ""
-        @Published var showingAlert = false
-        
-        private let databaseManager = DatabaseManager.databaseManager
-        
-        func authorization() -> Bool {
-            return databaseManager.authorization(email: email, password: password)
+class AuthorizationViewModel: ObservableObject {
+    @AppStorage("ActiveUserEmail") var activeUserEmail = ""
+    
+    @Published var email = ""
+    @Published var password = ""
+    @Published var showingAlert = false
+    
+    private let databaseManager = DatabaseManager.databaseManager
+    
+    func authorization() -> Bool {
+        return databaseManager.authorization(email: email, password: password)
+    }
+    
+    func buttonAction() {
+        if authorization() == true {
+            activeUserEmail = email
+        } else {
+            showingAlert = true
         }
-        
-        func buttonAction() {
-            if authorization() == true {
-                activeUserEmail = email
-            } else {
-                showingAlert = true
-            }
-        }
-        
-        func printUsers() {
-            databaseManager.printUsers()
-        }
+    }
+    
+    func printUsers() {
+        databaseManager.printUsers()
     }
 }

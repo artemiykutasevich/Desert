@@ -1,5 +1,5 @@
 //
-//  PostsView.swift
+//  MyPostsView.swift
 //  Desert
 //
 //  Created by Artem Kutasevich on 11.03.22.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct PostsView: View {
-    @StateObject private var viewModel = PostsViewModel()
+struct MyPostsView: View {
+    @StateObject private var viewModel = AccountViewModel()
     
     let fileManager = FileManager()
     
@@ -23,7 +23,10 @@ struct PostsView: View {
                                 .scaledToFit()
                                 .frame(width: 100)
                             Spacer()
-                            Text(post.comment)
+                            VStack {
+                                Text(post.comment)
+                                Text("likes: \(post.likes.count)")
+                            }
                             Spacer()
                         }
                     }
@@ -41,6 +44,6 @@ struct PostsView: View {
 
 struct PostsView_Previews: PreviewProvider {
     static var previews: some View {
-        PostsView()
+        MyPostsView()
     }
 }

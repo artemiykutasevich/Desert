@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct FriendsView: View {
-    @StateObject var viewModel = FriendsViewModel()
+struct MyFriendsView: View {
+    @StateObject var viewModel = AccountViewModel()
     
     init() {
         UITableView.appearance().backgroundColor = UIColor(Color("Color 1"))
@@ -19,7 +19,7 @@ struct FriendsView: View {
             List {
                 ForEach(viewModel.friends) { friend in
                     HStack {
-                        Image(uiImage: viewModel.getAvatar(friend: friend))
+                        Image(uiImage: viewModel.getAvatar(uuid: friend.avatar ?? UUID()))
                             .resizable()
                             .imageCircleStyle()
                             .imageCircleStrokeStyle()
@@ -41,6 +41,6 @@ struct FriendsView: View {
 
 struct FriendsView_Previews: PreviewProvider {
     static var previews: some View {
-        FriendsView()
+        MyFriendsView()
     }
 }

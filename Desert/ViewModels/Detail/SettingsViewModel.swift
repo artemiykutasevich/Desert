@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-extension SettingsView {
-    class SettingsViewModel: ObservableObject {
-        @AppStorage("Animation") var animation = true
-        
-        @Published var location = true
-    }
+class SettingsViewModel: ObservableObject {
+    @AppStorage("Animation") var animation = true
+    @AppStorage("ActiveUserEmail") var activeUserEmail = ""
+    
+    @Published var showingChangeAvatarSheet = false
+    @Published var showingChangeNicknameSheet = false
+    @Published var showingChangePasswordSheet = false
 }

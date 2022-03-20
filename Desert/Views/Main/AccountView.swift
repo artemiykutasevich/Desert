@@ -10,10 +10,6 @@ import SwiftUI
 struct AccountView: View {
     @StateObject private var viewModel = AccountViewModel()
     
-    init() {
-        UITableView.appearance().backgroundColor = UIColor(Color("Color 4"))
-    }
-    
     // MARK: body
     
     var body: some View {
@@ -27,28 +23,28 @@ struct AccountView: View {
                         viewModel.printActiveUser()
                     }, label: {
                         HStack {
-//                            posts
+                            posts
                             Spacer()
                             Text("My Posts")
                             Spacer()
                         }
                     })
                     .sheet(isPresented: $viewModel.showingPostsSheet) {
-                        PostsView()
+                        MyPostsView()
                     }
                     
                     Button(action: {
                         viewModel.showingFriendsSheet.toggle()
                     }, label: {
                         HStack {
-//                            friends
+                            friends
                             Spacer()
                             Text("My Friends")
                             Spacer()
                         }
                     })
                     .sheet(isPresented: $viewModel.showingFriendsSheet) {
-                        FriendsView()
+                        MyFriendsView()
                     }
                 }
                 
@@ -77,13 +73,16 @@ struct AccountView: View {
                 }
                 .listRowBackground(Color(.red).opacity(0.3))
             }
+            .background(Color("Color 4"))
             .foregroundColor(.primary)
-            .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
-            .safeAreaInset(edge: .top, content: {
+            .safeAreaInset(edge: .top) {
                 Color.clear.frame(height: 70)
-            })
+            }
             .overlay(NavigationBar(title: "Account"))
+            .safeAreaInset(edge: .bottom) {
+                Color.clear.frame(height: 50)
+            }
         }
     }
     
@@ -91,7 +90,7 @@ struct AccountView: View {
     
     var profile: some View {
         VStack(spacing: 8) {
-            Image(uiImage: viewModel.getAvatar())
+            Image(uiImage: viewModel.getAvatar(uuid: viewModel.activeUser?.avatar ?? UUID()))
                 .resizable()
                 .imageCircleStyle(diameter: 100)
                 .imageCircleStrokeStyle()
@@ -121,55 +120,73 @@ struct AccountView: View {
     
     // MARK: friends
     
-//    var friends: some View {
-//        ZStack {
-//            Image(systemName: "person")
-//                .resizable()
-//                .imageCircleStyle()
-//                .imageCircleStrokeStyle(strokeSize: 3)
-//                .scaleEffect(0.8)
-//
-//            Image(systemName: "person")
-//                .resizable()
-//                .imageCircleStyle()
-//                .imageCircleStrokeStyle(strokeSize: 3)
-//                .scaleEffect(0.8)
-//                .offset(x: 50)
-//
-//            Image(systemName: "person")
-//                .resizable()
-//                .imageCircleStyle()
-//                .imageCircleStrokeStyle(strokeSize: 3)
-//                .scaleEffect(0.9)
-//                .offset(x: 25)
-//        }
-//    }
+    var friends: some View {
+        ZStack {
+            if viewModel.friends.count >= 1 {
+                let image = viewModel.getAvatar(uuid: viewModel.friends[0].avatar ?? UUID())
+                Image(uiImage: image)
+                    .resizable()
+                    .imageCircleStyle()
+                    .imageCircleStrokeStyle(strokeSize: 3)
+                    .scaleEffect(0.9)
+                    .offset(x: 25)
+            }
+            
+            if viewModel.friends.count >= 2 {
+                let image = viewModel.getAvatar(uuid: viewModel.friends[1].avatar ?? UUID())
+                Image(uiImage: image)
+                    .resizable()
+                    .imageCircleStyle()
+                    .imageCircleStrokeStyle(strokeSize: 3)
+                    .scaleEffect(0.8)
+            }
+            
+            if viewModel.friends.count >= 3 {
+                let image = viewModel.getAvatar(uuid: viewModel.friends[2].avatar ?? UUID())
+                Image(uiImage: image)
+                    .resizable()
+                    .imageCircleStyle()
+                    .imageCircleStrokeStyle(strokeSize: 3)
+                    .scaleEffect(0.8)
+                    .offset(x: 50)
+            }
+        }
+    }
     
     // MARK: posts
     
-//    var posts: some View {
-//        ZStack {
-//            Image(systemName: "photo")
-//                .resizable()
-//                .imageRoundedRectangleStyle()
-//                .imageRoundedRectangleStrokeStyle(strokeSize: 3)
-//                .scaleEffect(0.8)
-//
-//            Image(systemName: "photo")
-//                .resizable()
-//                .imageRoundedRectangleStyle()
-//                .imageRoundedRectangleStrokeStyle(strokeSize: 3)
-//                .scaleEffect(0.8)
-//                .offset(x: 50)
-//
-//            Image(systemName: "photo")
-//                .resizable()
-//                .imageRoundedRectangleStyle()
-//                .imageRoundedRectangleStrokeStyle(strokeSize: 3)
-//                .scaleEffect(0.9)
-//                .offset(x: 25)
-//        }
-//    }
+    var posts: some View {
+        ZStack {
+            if viewModel.posts.count >= 1 {
+                let image = viewModel.getAvatar(uuid: viewModel.posts[0].image)
+                Image(uiImage: image)
+                    .resizable()
+                    .imageRoundedRectangleStyle()
+                    .imageRoundedRectangleStrokeStyle(strokeSize: 3)
+                    .scaleEffect(0.9)
+                    .offset(x: 25)
+            }
+            
+            if viewModel.posts.count >= 2 {
+                let image = viewModel.getAvatar(uuid: viewModel.posts[1].image)
+                Image(uiImage: image)
+                    .resizable()
+                    .imageRoundedRectangleStyle()
+                    .imageRoundedRectangleStrokeStyle(strokeSize: 3)
+                    .scaleEffect(0.8)
+            }
+            
+            if viewModel.posts.count >= 3 {
+                let image = viewModel.getAvatar(uuid: viewModel.posts[2].image)
+                Image(uiImage: image)
+                    .resizable()
+                    .imageRoundedRectangleStyle()
+                    .imageRoundedRectangleStrokeStyle(strokeSize: 3)
+                    .scaleEffect(0.8)
+                    .offset(x: 50)
+            }
+        }
+    }
 }
 
 struct AccountView_Previews: PreviewProvider {

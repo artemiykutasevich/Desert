@@ -113,42 +113,6 @@ class DatabaseManager {
         return friend
     }
     
-    func findFriends(email: String) -> [DatabaseFriend] {
-        let user = findUser(by: email)
-        var array = [DatabaseFriend]()
-        
-        for friend in user.friends {
-            array.append(makeFriend(reference: findUser(by: friend)))
-        }
-        return array
-    }
-    
-    func findUserPosts(userEmail: String) -> [DatabasePosts] {
-        let user = findUser(by: userEmail)
-        var postMain = [DatabasePosts]()
-        
-        if !user.posts.isEmpty {
-            for post in user.posts {
-                postMain.append(post)
-            }
-        }
-        return postMain
-    }
-    
-    func findFriendsPosts(userEmail: String) -> [DatabasePosts] {
-        let friends = findFriends(email: userEmail)
-        var postsMain = [DatabasePosts]()
-        
-        for friend in friends {
-            if !friend.posts.isEmpty {
-                for post in friend.posts {
-                    postsMain.append(post)
-                }
-            }
-        }
-        return postsMain
-    }
-    
     func makeRecommends(userEmail: String) -> [DatabaseFriend] {
         let userMain = makeFriend(reference: findUser(by: userEmail))
         
@@ -183,6 +147,48 @@ class DatabaseManager {
             index = 0
         }
         return arrayOfUsers
+    }
+    
+    // MARK: MyFriends View
+    
+    func findFriends(email: String) -> [DatabaseFriend] {
+        let user = findUser(by: email)
+        var array = [DatabaseFriend]()
+        
+        for friend in user.friends {
+            array.append(makeFriend(reference: findUser(by: friend)))
+        }
+        return array
+    }
+    
+    // MARK: MyFriends View
+    
+    func findUserPosts(userEmail: String) -> [DatabasePosts] {
+        let user = findUser(by: userEmail)
+        var postMain = [DatabasePosts]()
+        
+        if !user.posts.isEmpty {
+            for post in user.posts {
+                postMain.append(post)
+            }
+        }
+        return postMain
+    }
+    
+    // MARK: News View
+    
+    func findFriendsPosts(userEmail: String) -> [DatabasePosts] {
+        let friends = findFriends(email: userEmail)
+        var postsMain = [DatabasePosts]()
+        
+        for friend in friends {
+            if !friend.posts.isEmpty {
+                for post in friend.posts {
+                    postsMain.append(post)
+                }
+            }
+        }
+        return postsMain
     }
     
     // MARK: Publications
@@ -249,13 +255,21 @@ class DatabaseManager {
         return result
     }
     
-    // MARK: Future
+    // MARK: Settings
     
     func changePassword(for email: String, new password: String) {
         let user = findUser(by: email)
         
         try? realm.write {
             user.password = password
+        }
+    }
+    
+    func changeNickname(for email: String, new nickname: String) {
+        let user = findUser(by: email)
+        
+        try? realm.write {
+            user.nickname = nickname
         }
     }
     
@@ -273,6 +287,8 @@ class DatabaseManager {
     func printUsers() {
         print(users)
     }
+    
+    // MARK: Avatar
     
     func addAvatar(userEmail: String, image: UUID) {
         let user = findUser(by: userEmail)

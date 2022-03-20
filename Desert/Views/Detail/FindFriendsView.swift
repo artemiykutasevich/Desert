@@ -19,7 +19,7 @@ struct FindFriendsView: View {
             List {
                 ForEach(viewModel.recommends) { user in
                     HStack {
-                        Image(uiImage: viewModel.getAvatar(friend: user))
+                        Image(uiImage: viewModel.getAvatar(uuid: user.avatar ?? UUID()))
                             .resizable()
                             .imageCircleStyle()
                             .imageCircleStrokeStyle()
