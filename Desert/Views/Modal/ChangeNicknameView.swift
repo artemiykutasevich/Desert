@@ -18,6 +18,7 @@ struct ChangeNicknameView: View {
                 
                 Button(action: {
                     viewModel.changeNickname()
+                    viewModel.nickname = ""
                 }, label: {
                     Text("Change nickname")
                 })

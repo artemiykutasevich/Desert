@@ -31,7 +31,7 @@ struct ForgotPasswordView: View {
                 }
                 
                 HStack {
-                    Text("Enter the email addres associated with your account")
+                    Text("Enter the email address associated with your account")
                         .font(.caption)
                         .foregroundColor(.primary)
                         .fontWeight(.semibold)
@@ -41,6 +41,7 @@ struct ForgotPasswordView: View {
                 TextField("Email" .uppercased(), text: $viewModel.email)
                     .textFieldStyle()
                     .keyboardType(.emailAddress)
+                    .textInputAutocapitalization(.never)
                 
                 Button(action: {
                     viewModel.resetPassword()
@@ -54,7 +55,9 @@ struct ForgotPasswordView: View {
                 .alert(isPresented: $viewModel.showingAlert) {
                     Alert(title: Text("New password - your email"),
                           message: Text("new password matches email"),
-                          dismissButton: .cancel(Text("Okey")))
+                          dismissButton: .cancel(Text("Okey"), action: {
+                        viewModel.email = ""
+                    }))
                 }
             }
             .padding()

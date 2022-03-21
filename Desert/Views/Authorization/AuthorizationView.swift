@@ -38,10 +38,12 @@ struct AuthorizationView: View {
                 TextField("Email" .uppercased(), text: $viewModel.email)
                     .textFieldStyle()
                     .keyboardType(.emailAddress)
+                    .textInputAutocapitalization(.never)
                 
-                TextField("Password" .uppercased(), text: $viewModel.password)
+                SecureField("Password" .uppercased(), text: $viewModel.password)
                     .textFieldStyle()
                     .keyboardType(.default)
+                    .textInputAutocapitalization(.never)
                 
                 Button(action: {
                     viewModel.buttonAction()
@@ -53,8 +55,11 @@ struct AuthorizationView: View {
                 })
                 .alert(isPresented: $viewModel.showingAlert) {
                     Alert(title: Text("User not found"),
-                          message: Text("Chech your email and password"),
-                          dismissButton: .cancel(Text("Okey")))
+                          message: Text("Check your email and password"),
+                          dismissButton: .cancel(Text("Okey"), action: {
+                        viewModel.email = ""
+                        viewModel.password = ""
+                    }))
                 }
                 
                 NavigationLink(destination: ForgotPasswordView()) {

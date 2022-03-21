@@ -13,13 +13,15 @@ struct ChangePasswordView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 16) {
-                TextField("New password", text: $viewModel.firstPassword)
+                SecureField("New password", text: $viewModel.firstPassword)
                     .textFieldStyle()
-                TextField("Confirm password", text: $viewModel.secondPassword)
+                SecureField("Confirm password", text: $viewModel.secondPassword)
                     .textFieldStyle()
                 
                 Button(action: {
                     viewModel.changePassword()
+                    viewModel.firstPassword = ""
+                    viewModel.secondPassword = ""
                 }, label: {
                     Text("Change password")
                 })

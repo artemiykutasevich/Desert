@@ -33,18 +33,22 @@ struct RegistrationView: View {
                 TextField("Nickname" .uppercased(), text: $viewModel.nickname)
                     .textFieldStyle()
                     .keyboardType(.default)
+                    .textInputAutocapitalization(.never)
                 
                 TextField("Email" .uppercased(), text: $viewModel.email)
                     .textFieldStyle()
                     .keyboardType(.emailAddress)
+                    .textInputAutocapitalization(.never)
                 
-                TextField("Password" .uppercased(), text: $viewModel.firstPassword)
+                SecureField("Password" .uppercased(), text: $viewModel.firstPassword)
                     .textFieldStyle()
                     .keyboardType(.default)
+                    .textInputAutocapitalization(.never)
                 
-                TextField("Confirm Password" .uppercased(), text: $viewModel.secondPassword)
+                SecureField("Confirm Password" .uppercased(), text: $viewModel.secondPassword)
                     .textFieldStyle()
                     .keyboardType(.default)
+                    .textInputAutocapitalization(.never)
                 
                 Button(action: {
                     viewModel.registrationUser()
@@ -58,7 +62,12 @@ struct RegistrationView: View {
                 .alert(isPresented: $viewModel.showingAlert) {
                     Alert(title: Text("My congratulations"),
                           message: Text("the user is now registered"),
-                          dismissButton: .cancel(Text("Cool")))
+                          dismissButton: .cancel(Text("Cool"), action: {
+                        viewModel.nickname = ""
+                        viewModel.email = ""
+                        viewModel.firstPassword = ""
+                        viewModel.secondPassword = ""
+                    }))
                 }
             }
             .padding()
