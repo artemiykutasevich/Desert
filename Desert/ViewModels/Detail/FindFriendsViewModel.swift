@@ -28,9 +28,9 @@ class FindFriendsViewModel: ObservableObject {
         }
     }
     
-    func addFriends(friendEmail: String) {
+    func addFriends(friendID: UUID) {
         DispatchQueue.main.async { [self] in
-            databaseManager.addFriend(userEmail: activeUserEmail, friendEmail: friendEmail)
+            databaseManager.addFriend(userEmail: activeUserEmail, friendID: friendID)
         }
     }
     

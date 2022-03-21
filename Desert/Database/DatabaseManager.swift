@@ -91,9 +91,9 @@ class DatabaseManager {
     
     // MARK: FindFriends View
     
-    func addFriend(userEmail: String, friendEmail: String) {
+    func addFriend(userEmail: String, friendID: UUID) {
         let user = findUser(by: userEmail)
-        let friend = findUser(by: friendEmail)
+        let friend = findUser(by: friendID)
         
         try? realm.write {
             user.friends.append(friend.id)
@@ -104,7 +104,7 @@ class DatabaseManager {
     func makeFriend(reference: DatabaseUsers) -> DatabaseFriend {
         let friend = DatabaseFriend(id: reference.id,
                                     nickname: reference.nickname,
-                                    email: reference.email,
+                                    //email: reference.email,
                                     avatar: reference.avatar,
                                     latitude: reference.latitude,
                                     longitude: reference.longitude,
@@ -130,7 +130,7 @@ class DatabaseManager {
         
         var index = 0
         for user in arrayOfUsers {
-            if user.email == userMain.email {
+            if user.id == userMain.id {
                 arrayOfUsers.remove(at: index)
             }
             index += 1
@@ -139,7 +139,7 @@ class DatabaseManager {
         index = 0
         for friend in arrayOfFriends {
             for user in arrayOfUsers {
-                if user.email == friend.email {
+                if user.id == friend.id {
                     arrayOfUsers.remove(at: index)
                 }
                 index += 1

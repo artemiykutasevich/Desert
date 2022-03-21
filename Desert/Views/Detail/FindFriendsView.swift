@@ -32,7 +32,7 @@ struct FindFriendsView: View {
                         }
                         Spacer()
                         Button(action: {
-                            viewModel.addFriends(friendEmail: user.email)
+                            viewModel.addFriends(friendID: user.id)
                             viewModel.updateRecommends()
                         }, label: {
                             Text("Add to friends")
