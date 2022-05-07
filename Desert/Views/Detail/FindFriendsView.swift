@@ -15,34 +15,33 @@ struct FindFriendsView: View {
     }
     
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(viewModel.recommends) { user in
-                    HStack {
-                        Image(uiImage: viewModel.getAvatar(uuid: user.avatar ?? UUID()))
-                            .resizable()
-                            .imageCircleStyle()
-                            .imageCircleStrokeStyle()
-                        Spacer()
-                        VStack {
-                            Text(user.nickname)
-                                .fontWeight(.bold)
-                            Text("\(user.friends.count) friends")
-                                .fontWeight(.light)
-                        }
-                        Spacer()
-                        Button(action: {
-                            viewModel.addFriends(friendID: user.id)
-                            viewModel.updateRecommends()
-                        }, label: {
-                            Text("Add to friends")
-                        })
-                        .buttonStyle(width: 100)
+        List {
+            ForEach(viewModel.recommends) { user in
+                HStack {
+                    Image(uiImage: viewModel.getAvatar(uuid: user.avatar ?? UUID()))
+                        .resizable()
+                        .imageCircleStyle()
+                        .imageCircleStrokeStyle()
+                    Spacer()
+                    VStack {
+                        Text(user.nickname)
+                            .fontWeight(.bold)
+                        Text("\(user.friends.count) friends")
+                            .fontWeight(.light)
                     }
+                    Spacer()
+                    Button(action: {
+                        viewModel.addFriends(friendID: user.id)
+                        viewModel.updateRecommends()
+                    }, label: {
+                        Text("Add to friends")
+                    })
+                    .buttonStyle(width: 100)
                 }
             }
-            .navigationTitle("Find Friends")
         }
+        .navigationTitle("Find Friends")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
